@@ -1,0 +1,5148 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.LinkedHashMap;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.regex.*;  
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+
+
+
+class EncapsulationDemo{
+    private int ssn;
+    private String empName;
+    private int empAge;
+
+    //Getter and Setter methods
+    public int getEmpSSN(){
+        return ssn;
+    }
+
+    public String getEmpName(){
+        return empName;
+    }
+
+    public int getEmpAge(){
+        return empAge;
+    }
+
+    public void setEmpAge(int newValue){
+        empAge = newValue;
+    }
+
+    public void setEmpName(String newValue){
+        empName = newValue;
+    }
+
+    public void setEmpSSN(int newValue){
+        ssn = newValue;
+    }
+}
+public class collection1 {
+
+   public static void main(String args[]) {
+   
+   HashMap<Integer, String> hmap =  gethm();
+   
+   System.out.println("From the Main program ....");
+   
+   
+      Set set = hmap.entrySet();
+      Iterator iterator = set.iterator();
+      
+   
+      while(iterator.hasNext()) {
+         Map.Entry mentry = (Map.Entry)iterator.next();
+         System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+         System.out.println(mentry.getValue());
+      }
+
+   }
+   // ================================================================================================
+   //              Orders are not Maintained in Hashmap
+   //
+   //                HashMap can keep Null Values
+   //                HashMap is not synchronized and not thread safe 
+  //                 HashMap is non-synchronized. This means if it’s used in multithread environment then more than one thread can access and process the HashMap simultaneously.
+
+  //                  Hashtable is synchronized. It ensures that no more than one thread can access the Hashtable at a given moment of time. The thread which works on Hashtable acquires a lock on it to make the other threads wait till its work gets completed.
+
+  //                  2) HashMap allows one null key and any number of null values.
+
+
+   // ====================================================================================================================
+   
+   
+   public static    HashMap<Integer, String>  gethm()
+   {
+
+      /* This is how to declare HashMap */
+      HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+
+      // ============================================================================
+      //                Read From db 
+      //         Populate the Hashmap
+      //         Return the Hashmap
+      //
+      //     while rs.next  ==>  GetString(1)    GetString(2) 
+      // ==========================================================================
+      
+      
+      /*Adding elements to HashMap*/
+      hmap.put(12, "Chaitanya");
+      hmap.put(2, "Rahul");
+      hmap.put(7, "Singh");
+      hmap.put(49, "Ajeet");
+      hmap.put(3, "Anuj");
+
+      /* Display content using Iterator*/
+      Set set = hmap.entrySet();
+      Iterator iterator = set.iterator();
+      while(iterator.hasNext()) {
+         Map.Entry mentry = (Map.Entry)iterator.next();
+         System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+         System.out.println(mentry.getValue());
+      }
+
+      /* Get values based on key*/
+      String var= hmap.get(2);
+      System.out.println("Value at index 2 is: "+var);
+
+      /* Remove values based on key*/
+      hmap.remove(3);
+      System.out.println("Map key and values after removal:");
+      Set set2 = hmap.entrySet();
+      Iterator iterator2 = set2.iterator();
+      while(iterator2.hasNext()) {
+          Map.Entry mentry2 = (Map.Entry)iterator2.next();
+          System.out.print("Key is: "+mentry2.getKey() + " & Value is: ");
+          System.out.println(mentry2.getValue());
+       }
+
+       return hmap;
+      
+   }
+   
+   // =========================================================================================================================
+   //              LinkedHashmapSet
+   //
+   //                  Orders are Maintained
+   // =========================================================================================================================
+   
+   
+  
+    public static void getlinkedmapset()
+    {
+         // HashMap Declaration
+         LinkedHashMap<Integer, String> lhmap = 
+                 new LinkedHashMap<Integer, String>();
+
+         //Adding elements to LinkedHashMap
+         lhmap.put(22, "Abey");
+         lhmap.put(33, "Dawn");
+         lhmap.put(1, "Sherry");
+         lhmap.put(2, "Karon");
+         lhmap.put(100, "Jim");
+
+         // Generating a Set of entries
+         Set set = lhmap.entrySet();
+
+         // Displaying elements of LinkedHashMap
+         Iterator iterator = set.iterator();
+         while(iterator.hasNext()) {
+            Map.Entry me = (Map.Entry)iterator.next();
+            System.out.print("Key is: "+ me.getKey() + 
+                    "& Value is: "+me.getValue()+"\n");
+         }
+    }
+   
+   
+    // =========================================================================================================================
+    //              ArrayList
+    //
+    //                  Orders are Maintained
+    // =========================================================================================================================
+   
+    
+    public static void Arraylist1()
+    {
+    ArrayList<String> obj = new ArrayList<String>();
+
+  /*This is how elements should be added to the array list*/
+  obj.add("Ajeet");
+  obj.add("Harry");
+  obj.add("Chaitanya");
+  obj.add("Steve");
+  obj.add("Anuj");
+
+  /* Displaying array list elements */
+  System.out.println("Currently the array list has following elements:"+obj);
+
+  /*Add element at the given index*/
+  obj.add(0, "Rahul");
+  obj.add(1, "Justin");
+
+  /*Remove elements from array list like this*/
+  obj.remove("Chaitanya");
+  obj.remove("Harry");
+
+  System.out.println("Current array list is:"+obj);
+
+  /*Remove element from the given index*/
+  obj.remove(1);
+
+  System.out.println("Current array list is:"+obj);
+   }
+    
+    
+    //===============================================================================================================================
+    //                           Treeset
+    // =============================================================================================================================
+    
+    //TreeSet is similar to HashSet except that it sorts the elements in the ascending order while HashSet doesn’t maintain any order. 
+    //TreeSet allows null element but like HashSet it doesn’t allow. Like most of the other collection classes this class is also not synchronized, 
+    //however it can be synchronized explicitly 
+    //like this: SortedSet s = Collections.synchronizedSortedSet(new TreeSet(...));    
+   // ========================================================================================================================================
+    public static void treeset1()
+    {
+    TreeSet<String> tset = new TreeSet<String>();
+
+        // Adding elements to TreeSet<String>
+        tset.add("ABC");
+        tset.add("String");
+        tset.add("Test");
+        tset.add("Pen");
+        tset.add("Ink");
+        tset.add("Jack");
+
+        //Displaying TreeSet
+        System.out.println(tset);
+
+        // TreeSet of Integer Type
+        TreeSet<Integer> tset2 = new TreeSet<Integer>();
+
+        // Adding elements to TreeSet<Integer>
+        tset2.add(88);
+        tset2.add(7);
+        tset2.add(101);
+        tset2.add(0);
+        tset2.add(3);
+        tset2.add(222);
+        System.out.println(tset2);
+        
+    }
+   
+    public static void regex1()
+    {
+     String content = "This is Chaitanya " +
+         "from Beginnersbook.com.";
+
+           String pattern = ".*book.*";
+
+           boolean isMatch = Pattern.matches(pattern, content);
+           System.out.println("The text contains 'book'? " + isMatch);
+      
+           String content0 = "This is a tutorial Website!";
+           String patternString = ".*tutorial.*";
+           boolean isMatch1 = Pattern.matches(patternString, content0);
+           System.out.println("The text contains 'tutorial'? " + isMatch1);
+    
+           String content1 = "This is a tutorial Website!";
+           String patternString11 = ".*tuToRiAl.*";
+           Pattern pattern11 = Pattern.compile(patternString11, Pattern.CASE_INSENSITIVE);
+           Matcher matcher = pattern11.matcher(content1);
+           boolean isMatched = matcher.matches();
+           System.out.println("Is it a Match?" + isMatched);
+           
+           
+           String text = "ThisIsChaitanya.ItISMyWebsite";
+           // Pattern for delimiter
+        String patternString1 = "is";
+        Pattern pattern1 = Pattern.compile(patternString1, Pattern.CASE_INSENSITIVE);
+        String[] myStrings = pattern1.split(text);
+        for(String temp: myStrings){
+            System.out.println(temp);
+        }
+        System.out.println("Number of split strings: "+myStrings.length);
+        
+     
+    
+    }
+    
+    // ======================================================================================================================
+    //                                  Encapsulation
+    //  The whole idea behind encapsulation is to hide the implementation details from users. If a data member is private it means it can only be 
+     //  accessed within the same class. No outside class can access private data member (variable) of other class.
+    
+    // =====================================================================================================================
+    
+    
+    
+    public static void encap(){
+   
+             EncapsulationDemo obj = new EncapsulationDemo();
+             
+             obj.setEmpName("Mario");
+             obj.setEmpAge(32);
+             obj.setEmpSSN(112233);
+             System.out.println("Employee Name: " + obj.getEmpName());
+             System.out.println("Employee SSN: " + obj.getEmpSSN());
+             System.out.println("Employee Age: " + obj.getEmpAge());
+        } 
+    
+// ======================================================================================
+//                    Garbage Collection
+//             Finalize method is used for Garbage Collection
+// =========================================================================================
+    
+    
+    public static void encap1(){
+    
+      EncapsulationDemo obj=new  EncapsulationDemo();  
+obj=null;  
+        /* Here we are intentionally assigning reference a 
+         * to the another reference b to make the object referenced
+         * by b unusable.
+         */
+ EncapsulationDemo a = new  EncapsulationDemo();
+ EncapsulationDemo b = new  EncapsulationDemo();
+b = a;
+System.gc();  
+   }  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    protected void finalize() throws Throwable
+    {
+         System.out.println("Garbage collection is performed by JVM");
+    }
+    
+    
+    //  ====================================================================================================================================
+    //                Serialization
+    // =====================================================================================================================================
+    
+    //   Serialization is a mechanism to convert an object into stream of bytes so that it can be written into a file, transported through a network or 
+    //    stored into database. De-serialization is just a vice versa. 
+    // =====================================================================================================================================
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+==========================================================================================================
+1)  Read Config File and get the Excel FileNm, ReportFilenm,AutomationLog File,dbconn,URL
+2)  Read ExcelFileNm and Get  TCNO,TCDesc,SQL,Input
+3)  Split the Input and get URL,Screen Population elements(Userid,password)
+3)  Invoke the URL
+5)  Populate the Screen 
+6)  Click on Login
+6a)  Screen Title="welcome" then Error="N" else ERROR="Y"
+7)  Vrify Userid,Password is in the Database and set the Indicator gotit="Y"
+
+8)  ===========================================================================
+
+if gotit="Y" (Validuserid and Password in the database) and ERROR="N"
+   wrieexcel(Status="Pass")
+else
+if gotit="N" (INValiduserid and Password in the database) and ERROR="N"
+   wrieexcel(Status="Fail")
+else
+if gotit="Y" (Validuserid and Password in the database) and ERROR="Y"
+   wrieexcel(Status="Fail")
+else
+if gotit="N" (INValiduserid and Password in the database) and ERROR="Y"
+   wrieexcel(Status="Pass")
+
+   
+
+==============================================================================
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Testapp {
+public static void main(String [] args) throws InterruptedException{
+//  Create Config.properties   URL=Google.com, SearchString="java"
+//  CGet URL, SearchString
+//  driver.get(URL)
+//  Populate SearchString In Google
+//  Click on Serach Button
+// ================================================================
+String propFileName="C:\\bud\\config.properties\\";
+String URL="";
+String SearchString="";
+try {
+Properties prop = new Properties();
+FileInputStream inputStream =  new FileInputStream(propFileName);
+ 
+if (inputStream != null) {
+prop.load(inputStream);
+} else {
+throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+}
+ 
+// get the property value and print it out
+ URL = prop.getProperty("URL");
+ SearchString = prop.getProperty("SearchString");
+ System.out.println("URL=" + URL + SearchString);
+ 
+ 
+ 
+ 
+    
+    System.setProperty("webdriver.chrome.driver", "C:\\installation\\chromedriver.exe");
+    //Initialize InternetExplorerDriver Instance.
+    WebDriver driver = new ChromeDriver();
+  
+    driver.get(URL);
+    
+    
+    driver.findElement(By.id("1st-ib")).sendKeys(SearchString);
+    //driver.findElement(By.name("q")).sendKeys("aaaa");
+    
+    driver.findElement(By.name("btnK")).click();
+ 
+} catch (Exception e) {
+System.out.println("Exception: " + e);
+} finally {
+}
+
+        
+}
+
+}
+
+
+
+=======================
+
+
+
+
+package general;
+
+import java.util.ArrayList;
+
+public class arrays {
+  public static void main(String [] args) throws InterruptedException{
+  getarrays();
+  
+  }
+public static void getarrays()
+{
+// ===========================================================================================
+//               Variables
+// ===========================================================================================
+int age = 22;    //  int Variable 
+String nm = " Reshma";         //   String Variable 
+age = age + 22;
+System.out.println("age =" + age );
+nm = nm + "," +  "gupta";
+System.out.println("name =" + nm );  //Reshma,gupta
+// ===========================================================================================
+//      Arrays
+//===========================================================================================
+String []  student = new String[20];
+student[0]="reshma";
+student[1] = "nancy";
+student[2]="robert";
+System.out.println(student.length);
+for (int i=0;i < student.length;i++) {
+//  if not Null then only print   ( Go to Google )
+System.out.println(student[i]);
+}
+/* 
+stnm   jan  feb mar                dec 
+alam    100  100  200                 300
+popy    200  200  300
+najmum  100  200  300
+*/
+String [][] payment = {
+{"alam","200","300"},
+               {"alam1","200","300"}
+};
+System.out.println("No of Payments ==> " + payment.length);
+for (int i1=0;i1 < payment.length; i1++)
+{
+System.out.println(payment[i1][0] +payment[i1][1] );
+};
+for (int i1=0;i1 < payment.length; i1++)
+{
+for (int j1=0;j1<3;j1++)
+System.out.println(payment[i1][0] +payment[i1][j1] );
+};
+ Object[][] bookData = {
+
+                {"TCNO", "TCCASE DESCRIPTION", "Expected Result", "Actual Result","P/F"},
+
+                {"TC01", "Validate Userid and Password", "should be able to Login","Logged in","Passed"},
+
+                {"TC02", "Validate Userid and Password", "should be able to Login","Logged in","Passed"},
+
+                {"TC03", "Validate Userid and Password", "should be able to Login","Logged in","Passed"}
+
+             
+        };
+
+ 
+ 
+ 
+ 
+// ===========================================================================================
+//     ArrayList    ( you can add any Number)
+//
+//    Read the File 
+//   Put the data in Array  / Arraylist
+//   Print the Array
+// 
+//===========================================================================================
+
+    ArrayList<String> obj = new ArrayList<String>();
+
+  /*This is how elements should be added to the array list*/
+  obj.add("Ajeet");
+  obj.add("Harry");
+  obj.add("Chaitanya");
+  obj.add("Steve");
+  obj.add("Anuj");
+
+  /* Displaying array list elements */
+  System.out.println("Currently the array list has following elements:"+obj);
+
+  /*Add element at the given index*/
+  obj.add(0, "Rahul");
+  obj.add(1, "Justin");
+
+  /*Remove elements from array list like this*/
+  obj.remove("Chaitanya");
+  obj.remove("Harry");
+
+  System.out.println("Current array list is:"+obj);
+
+  /*Remove element from the given index*/
+  obj.remove(1);
+
+  System.out.println("Current array list is:"+obj);
+   
+    
+}
+
+}
+
+
+
+
+
+
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.Properties;
+
+public class Testapp {
+public static void main(String [] args) throws InterruptedException{
+//  Create Config.properties   URL=Google.com, SearchString="java"
+//  CGet URL, SearchString
+//  driver.get(URL)
+//  Populate SearchString In Google
+//  Click on Serach Button
+// ================================================================
+try {
+Properties prop = new Properties();
+FileInputStream inputStream =  new FileInputStream(propFileName);
+ 
+if (inputStream != null) {
+prop.load(inputStream);
+} else {
+throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+}
+ 
+Date time = new Date(System.currentTimeMillis());
+ 
+// get the property value and print it out
+ ExcelFilenm= prop.getProperty("excel");
+
+
+
+System.out.println("Excel=" + ExcelFilenm );
+} catch (Exception e) {
+System.out.println("Exception: " + e);
+} finally {
+}
+
+return ExcelFilenm ;
+}
+
+// =========================================================
+
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class  dbprog {
+//getdb ==> Function to get the value
+public static String  getdb(String sql)
+
+{
+// String sql="select * from student where stno ='3'";
+// String sql="select * from student";
+
+  // Calling the function and passing the query
+   //  String res=getdb(sql);
+
+   //splitting the value to get stnm
+  //   String nm=res.split(",")[1];
+   
+  // comparing with stnm Prithul or aaa
+   //  if (nm.equals("Prithul")) 
+   //     System.out.println("Equal");   
+   //     System.out.println("res from function = "+ res); 
+    // }
+     String res="";
+        try
+        {
+         // Connection for Oracle
+         Class.forName("oracle.jdbc.driver.OracleDriver");
+        Statement st=null;
+ResultSet rs = null;
+                String url = "jdbc:oracle:thin:@localhost:1522:demodbtest";
+            Connection cn = DriverManager.getConnection(url, "bud", "bud" );
+                System.out.println("Connection Worked");
+                
+             // create the statement object 
+                st = cn.createStatement();
+                
+            //  execute query
+                  rs = st.executeQuery( sql );
+
+                while(rs.next())
+                {
+                                 
+                res=res + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3);
+                }
+                cn.close();
+                }
+           catch (Exception e)
+                  {
+                     e.printStackTrace();
+                     System.out.println("Connection Failed");
+                  }
+                    return res;
+
+              }
+
+
+          }
+
+
+=================================================================
+
+
+package t1.t1;
+
+import static org.junit.Assert.*;
+import org.openqa.selenium.ie.InternetExplorerDriver; 
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.junit.Test;
+public class seleniumprog {
+
+  public static void main(String [] args) throws InterruptedException{
+        
+// selenium server  2010  
+//  start selenium server
+//  2013   webdriver  ( don't download selenium server
+//  Webdriver it works on the Browser level   (selenium 2.0)
+  
+  
+  
+
+    WebDriver browser =  new InternetExplorerDriver();
+
+    //Firefox's proxy driver executable is in a folder already
+    //  on the host system's PATH environment variable.
+    
+    System.setProperty("webdriver.ie.driver", "C:\\installation\\IEDriverServer.exe");
+    //Initialize InternetExplorerDriver Instance.
+    WebDriver driver = new InternetExplorerDriver();
+  
+    driver.get("http://google.com");
+    
+    
+    driver.findElement(By.id("1st-ib")).sendKeys("qtp");
+    //driver.findElement(By.name("q")).sendKeys("aaaa");
+    
+    driver.findElement(By.name("btnK")).click();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    browser.close();        
+   }
+}
+
+
+
+
+
+
+
+========================================================================
+
+
+
+
+package util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class getages {
+public static void  processfile (String FILENAME)
+  {
+  String EmpolyeeNames;
+BufferedReader br = null;
+FileReader fr = null;
+int age11;
+int a30 = 0;
+int a20 = 0;
+try {
+
+br = new BufferedReader(new FileReader(FILENAME));
+fr = new FileReader(FILENAME);
+br = new BufferedReader(fr);
+
+String sCurrentLine;
+
+while ((sCurrentLine = br.readLine()) != null) {
+System.out.println(sCurrentLine); 
+ Object sCuurrenLine = null;
+ String age= sCurrentLine.split(",")[2];
+ if (age == "20")
+ {
+ 
+ a20 = a20 + 1;
+ }
+ 
+ if (age == "30")
+ {
+ 
+ a30 = a30 + 1;
+ } 
+}
+// ==============================================================================
+//            End of While loop
+// ===============================================================================
+System.out.println("Totl 20==> "  +  a20);
+System.out.println("Totl 30==> "  +  a30);
+// ==============================================================================
+//           Catch the errors
+// ===============================================================================
+
+} catch (IOException e) {
+
+e.printStackTrace();
+
+} finally {
+
+try {
+
+if (br != null)
+br.close();
+
+if (fr != null)
+fr.close();
+
+} catch (IOException ex) {
+
+ex.printStackTrace();
+
+}
+
+}
+// ==============================================================================
+
+     }
+
+}
+
+
+
+
+
+
+=============================================================================================================
+
+
+
+
+
+
+// ===============================================================================================
+private static final String FILENAME = "C:\\Users\\ami5566\\Documents\\agesfile.txt";
+
+public static void main(String[] args) {
+// =============================================================================================
+//               Define the Variables 
+// ============================================================================================
+getages  ga = new getages(); 
+ga.processfile (FILENAME);
+String sql="select * from student where stno ='3'";
+dbprog  db = new dbprog();
+String retval=db.getdb(sql);
+System.out.println(retval);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.example.basic;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
+public class ReadFile {
+public static void main(String[] args) {
+Reader reader = null;
+try{
+reader = new FileReader("src/files/test.txt");
+// reader = new FileReader("C:\\Users\\Mushfiq\\Desktop\\test.txt");
+int c;
+while((c = reader.read()) != -1) {
+// char ch = (char) c; 
+char ch = (char) c; 
+System.out.print(ch);
+}
+} catch (IOException e) {
+e.printStackTrace();
+} finally {
+try{
+if (reader!=null) {
+reader.close();
+}
+}catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+
+}
+
+========================================================================================================================================================
+// =====================================================================
+//              BootCamp
+// ====================================================================
+
+Test Cases :
+
+Sr#	Test Cases for Insurance Application
+1	Validate claims rule
+2	Ensure that claim can occur to the maximum and minimum payment
+3	Verify data is transferred accurately to all sub-systems including accounts and reporting.
+4	Check that the claims can be processed via all channels example web, mobile, calls, etc
+5	Test for 100% coverage and accuracy in calculations determining premium rates
+6	Make sure formula for calculating dividend and paid up values gives correct value
+7	Verify surrender values are calculated as per the policy requirement
+8	Verify fiduciary details and bookkeeping requirements
+9	Test complex scenarios for policy lapse and revivals
+10	Test various conditions for non-forfeiture value
+11	Test scenarios for policy termination
+12	Verify general ledger account behave same as to reconcile with subsidiary ledger
+13	Test calculation of net liability for valuation
+14	Test conditions for extended term insurance
+15	Verify policy for a non-forfeiture option
+16	Check different insurance product term behaves as expected
+17	Verify premium value as per product plan
+18	Test automatic messaging system to inform customer about new products
+19	Validate all the data entered by users as it progresses through the workflow to trigger warnings, compliance, notification and other workflow events
+20	Verify insurance document template supports the document format like MS-Word
+21	Test system for generating invoice automatically and send it to customer through e-mail
+
+=================================================================================
+Write the Test Stories from the Requirements 
+Develop Test Bed
+Steps to execute the Test Cases
+Create Proper Tables,Views,Indexes ,Pk,FK,Synonym 
+Write the Script to Load the Data from Prod to QA
+Create the HTML File to develop the screen 
+Write Feature File from the Test Cases 
+Create Cucumber Selenium Program to Test the Application
+Put the Code into Github
+Run the Program from Jenkins 
+================================================================================
+https://www.health.ny.gov/statistics/sparcs/sysdoc/input5010.pdf
+
+Najmoon  ==>  3
+Papri    ==>  2
+Rahul   ===>  14
+Mamoon ==>    1
+Nushrat  ==> 5
+Riyad    ==> 1
+shaheen  ==> 1
+Kamal    ==> 
+Luna    ==> 11
+Nur       ==> 1
+Ibrahim   ==> 
+===========================================================================
+Test Cases 
+Simple SQL
+Writing Feature Files 
+Create and Execute Cucumber Java Model
+API Testing
+======================================================================
+Biswajet can be customer if he Pays 3000 Deposit and USCitizen
+
+Server side Validation
+
+biswajeet  3000     and USC
+biswajeet  2000     and usc
+biswajeet  2000     and non usc
+biswajeet  3000     and non usc
+biswajeet   5000    and usc
+biswajeet   5000    and non usc
+biswajeet   3001    and usc
+biswajeet   2999     and usc
+biswajeet   3001    and non usc
+biswajeet   2999     and non usc
+
+
+Client Side Valodation
+biswajeet   0          and blank
+biswajeet   blank       blank
+biswajeet   0          and usc
+
+
+
+
+
+c:\>dir tnsnames.ora /s
+
+
+
+a) dbnm   u/p  database   tablename
+b) url  will give screen
+
+
+tnsnames.ora
+
+ORCLX =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1523))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = orclx)
+    )
+  )
+
+
+sqlplus god/god@dbnm
+
+// =========================================================================
+
+Deposit.feature
+
+Feature :   Verify Customer Deposit
+@smoke
+@All
+Scenario outline:  Verify Customer deposit on Various conditions 
+Given  I am in Payment Page using URL "xxx   "
+When   I type "<CustNM>"  and "<citienship>"  and "<Amount>"
+And   Click on "submit"
+Then It should come with proper "<message>"
+
+Examples:
+CUSTNM     citizenship  Amount  message 
+Kumar      usc          3000     added
+Kumar      usc          2000     Not added
+Kumar      Nusc          3000     Not added
+
+// =====================================================================
+
+@All
+Scenario :  Verify The URL Can be Invoked 
+Given  I am in Payment Page using URL "xxxxxxxxxxxxxxxx   "
+Then Title should be "Title"
+
+  
+Gherkin Language
+
+
+
+
+ISA*01*0000000000*01*0000000000*ZZ*ABCDEFGHIJKLMNO*ZZ*123456789012345*101127*1719*U*00400*000003438*0*P*>
+GS*HC*99999999999*888888888888*20111219*1340*1377*X*005010X222
+ST*837*0001*005010X222
+BHT*0019*00*565743*20110523*154959*CH
+NM1*41*2*SAMPLE INC*****46*496103
+PER*IC*EDI DEPT*EM*FEEDBACK@1edisource.com*TE*3305551212
+NM1*40*2*PPO BLUE*****46*54771
+HL*1**20*1
+PRV*BI*PXC*333600000X
+NM1*85*2*EDI SPECIALTY SAMPLE*****XX*123456789
+N3*1212 DEPOT DRIVE
+N4*CHICAGO*IL*606930159
+REF*EI*300123456
+HL*2*1*22*1
+SBR*P********BL
+
+NM1*IL*1*CUSTOMER*KAREN****MI*YYX123456789
+N3*228 PINEAPPLE CIRCLE
+N4*CORA*PA*15108
+DMG*D8*19630625*M
+
+NM1*PR*2*PPO BLUE*****PI*54771
+N3*PO BOX 12345
+N4*CAMP HILL*PA*17089
+HL*3*2*23*0
+PAT*19
+NM1*QC*1*CUSTOMER*COLE
+N3*228 PINEAPPLE CIRCLE
+N4*CORA*PA*15108
+DMG*D8*19940921*M
+CLM*945405*5332.54***12>B>1*Y*A*Y*Y*P
+HI*BK>2533
+LX*1
+SV1*HC>J2941*5332.54*UN*84***1
+DTP*472*RD8*20110511-20110511
+REF*6R*1099999731
+NTE*ADD*GENERIC 12MG CARTRIDGE
+LIN**N4*00013264681
+CTP****7*UN
+NM1*DK*1*PATIENT*DEBORAH****XX*12345679030
+N3*123 MAIN ST*APT B
+N4*PITTSBURGH*PA*152181871
+SE*39*0001
+GE*1*1377
+IEA*1*000001377
+=====================================================================================// =======================================================================================================
+//                                getdb
+// ====================================================================================================
+
+ dbprog db = new dbprog();		 
+  db.getdb(sql);
+
+Task-1
+=======
+Mainprog.java
+util ut = new util();
+
+String parm="jjj,1111111XXXXjohn,333333333XXXXnancy,111111";
+ut.splitfunc(parm);
+
+util.java
+public static  void splitfunc(String parm)
+{
+
+    String [] splitrec=parm.split("XXXX");
+    for (int i=0;i<splitrec.length;i++)
+    {
+         system.out.println(splitrec[i]);   //jjjj,11111
+
+          String nm = splitrec[i].split(",")[0];  //  jjj   //splitrec[0]="jjj,11111"
+          String Phno = splitrec[i].split(",")[1];//   11111
+          System.out.println("Rec=" + i + ". " +  "name=" + nm  + " Phoneno=" + Phno);
+
+    }
+
+       
+         }
+
+Deliverable ==> Tomorrow
+
+Task -2 
+
+Create a Test String 
+ts="John,1111"
+ts="John,1111XXXXJohn1,1112"
+ts="John,1111XXXX"John1,1112XXXXJohn3,1113XXXX"
+
+nm="john"
+phno="1111"
+if parm=1
+ts=nm + "," + phno
+system.out.println(ts)
+
+if parm=2
+nm="john" + "1"
+phno="1111"
+phno.parseInt(phno) + 1
+ts=nm + "," + phno
+system.out.println(ts)
+
+
+if parm=3
+nm="john" + "1"
+phno="1111"
+phno.parseInt(phno) + 1
+ts=nm + "," + phno
+
+nm="john" + "2"
+phno.parseInt(phno) + 1
+ts=nm + "," + phno
+
+system.out.println(ts)
+
+
+
+
+
+Deliverable ==> wednesday
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+dbprog  dbp = new dbprog();
+dbp.getdb(sql)
+dbp.getdb(sql,'11')
+
+public class  dbprog {
+	
+//getdb ==> Function to get the value
+
+public static String  getdb(String sql,String x)
+
+public static String  getdb(String sql)
+
+{
+	
+	
+	//	String sql="select * from student where stno ='3'";
+	// String sql="select * from student";
+
+  // Calling the function and passing the query
+   //  String res=getdb(sql);
+
+   //splitting the value to get stnm
+  //   String nm=res.split(",")[1];
+   
+  // comparing with stnm Prithul or aaa
+   //  if (nm.equals("Prithul")) 
+  	//     System.out.println("Equal");   
+  	//     System.out.println("res from function = "+ res); 
+    // }
+	
+	     String res="";
+	        try
+	        {
+	        	// Connection for Oracle
+	        	Class.forName("oracle.jdbc.driver.OracleDriver");
+	       		Statement st=null;
+		        ResultSet rs = null;
+	                String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	 	 	Connection cn = DriverManager.getConnection(url, "c##bud", "bud" );
+	                System.out.println("Connection Worked");
+	                
+	             // create the statement object 
+	                st = cn.createStatement();
+	                
+	            //  execute query
+                  rs = st.executeQuery( sql );
+                    //  res=""
+                    //  res = jjj,212222222
+                    //        jjj,21222222XXXXjohn,333333333XXXXnancy,111111
+	               	while(rs.next())
+	                {
+                                 
+	               		res=res + rs.getString(1) + "," + rs.getString(2)  + "xxxx" ;
+	                }
+	               	cn.close();
+	                }
+	           catch (Exception e)
+	                  {
+	                     e.printStackTrace();
+	                     System.out.println("Connection Failed");
+	                  }
+	        System.out.println(res);
+                    return res;
+
+	              }
+
+
+	          }
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ==============================================================================================
+//              ReadExcel
+// =============================================================================================
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class excel1 {
+
+	    public static void readexcel(String ExcelFile) {
+
+	        try {
+
+	            FileInputStream excelFile = new FileInputStream(new File(ExcelFile));
+	            Workbook workbook = new HSSFWorkbook(excelFile);
+	            org.apache.poi.ss.usermodel.Sheet datatypeSheet = workbook.getSheetAt(0);
+	            Iterator<Row> iterator = datatypeSheet.iterator();
+
+	            while (iterator.hasNext()) {
+
+	                Row currentRow = iterator.next();
+	                Iterator<Cell> cellIterator = currentRow.iterator();
+
+	                while (cellIterator.hasNext()) {
+
+	                    Cell currentCell = cellIterator.next();
+	                    //getCellTypeEnum shown as deprecated for version 3.15
+	                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+	                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+	                    	
+	                        System.out.print(currentCell.getStringCellValue() + "--");
+	                        
+	                        
+	                        
+	                        
+	                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+	                        System.out.print(currentCell.getNumericCellValue() + "--");
+	                    }
+
+	                }
+	                System.out.println();
+
+	            }
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	        	
+	        	
+	            e.printStackTrace();
+	        }
+
+	    }
+	    
+
+		public static void writeExcel() throws FileNotFoundException, IOException
+		{
+			
+			
+			   HSSFWorkbook workbook = new HSSFWorkbook();
+		        HSSFSheet sheet = workbook.createSheet("Java Books");
+		         
+		        Object[][] bookData = {
+		                {"TCNO", "TCCASE DESCRIPTION", "Expected Result", "Actual Result","P/F"},
+		                {"TC01", "Validate Userid and Password", "should be able to Login","Logged in","Passed"},
+		                {"TC02", "Validate Userid and Password", "should be able to Login","Logged in","Passed"},
+		                {"TC03", "Validate Userid and Password", "should be able to Login","Logged in","Passed"}
+			             
+		        };
+		 
+		        int rowCount = 0;
+		         
+		        for (Object[] aBook : bookData) {
+		            Row row = sheet.createRow(++rowCount);
+		             
+		            int columnCount = 0;
+		             
+		            for (Object field : aBook) {
+		                Cell cell = row.createCell(++columnCount);
+		                if (field instanceof String) {
+		                    cell.setCellValue((String) field);
+		                } else if (field instanceof Integer) {
+		                    cell.setCellValue((Integer) field);
+		                }
+		            }
+		             
+		        }
+		         
+		         
+		        try (FileOutputStream outputStream = new FileOutputStream("c:\\installation\\Report.xls")) {
+		            workbook.write(outputStream);
+		        }
+		    }
+		 
+			
+			 
+}
+
+
+// ===========================================================================================
+
+
+public class readconfig {
+	
+		public static String  readprop1(String propFileName) {
+			
+	String ExcelFilenm="";
+	{
+	try {
+		
+		
+				Properties prop = new Properties();
+			
+				
+				FileInputStream	inputStream =  new FileInputStream(propFileName);
+				 
+			
+				if (inputStream != null) {
+					prop.load(inputStream);
+				} else {
+					throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+				}
+	 
+				Date time = new Date(System.currentTimeMillis());
+	 
+				// get the property value and print it out
+				 ExcelFilenm= prop.getProperty("excel");
+
+
+
+				System.out.println("Excel=" + ExcelFilenm );
+				
+				
+				
+				
+				
+			} catch (Exception e) {
+				System.out.println("Exception: " + e);
+			} finally {
+				
+			}
+			
+		
+	
+	return ExcelFilenm ;
+	}
+
+}
+
+
+}
+
+
+
+
+=public class ojdbcconnection
+
+{
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	// Database credentials
+	static final String USER = "project";
+	static final String PASS = "project";
+	static final String tblnm = "Orders";
+
+	public static void main(String[] args) throws IOException {
+
+		String Filenm = "c:\\classinterview\\config.properties";
+
+		String retprop = getproperties(Filenm);
+		String[] allprop = retprop.split(",");
+		String USER = allprop[0];
+		String PASS = allprop[1];
+
+		String retrec = callreaddb(DB_URL, USER, PASS, tblnm);
+
+		// ================================================================
+		// To get the rows Split on XXX
+		// To Get the Columns Split on ,
+		// ===============================================================
+
+		String[] row = retrec.split("XXX"); // john,1,12XXXnancy,2,12XXXrabeca
+											// row[0] row[1] row[2]
+		// String nm=row[0].split(",")[0];
+		// String age=row[0].split(",")[1];
+		// String dept=row[0].split(",")[2];
+
+		for (int i = 0; i < row.length; i++) {
+			System.out.println("row" + i + "." + row[i]); // john,1,12
+															// Nancy,2,12
+
+			String nm = row[i].split(",")[0];
+			String age = row[i].split(",")[1];
+			String dept = row[i].split(",")[2];
+
+			// Screenload(nm,age,dept); // john,1,12
+			// Nance=y,2,12
+
+		}
+	}
+
+	public static String getproperties(String Filenm1) throws IOException
+
+	{
+
+		Properties prop = new Properties();
+
+		FileInputStream input = new FileInputStream(Filenm1);
+		prop.load(input);
+		String puserid = prop.getProperty("userid");
+		String ppassword = prop.getProperty("password");
+		String ph1 = prop.getProperty("H1");
+		String purl = prop.getProperty("url");
+		String retrec1 = puserid + "," + ppassword + "," + ph1 + "," + purl;
+		return retrec1;
+
+	}
+
+	public static String callreaddb(String DB_URL, String USER1, String PASS1, String tblnm) {
+		Connection conn = null;
+		Statement stmt = null;
+		String retrec1 = "";
+
+		try {
+			// STEP 2: Register JDBC driver
+			Driver driver = new oracle.jdbc.OracleDriver();
+			DriverManager.registerDriver(driver);
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(DB_URL, USER1, PASS1);
+			System.out.println("Connected database successfully...");
+
+			// STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+
+			String sql = "SELECT * from " + tblnm;
+			ResultSet rs = stmt.executeQuery(sql);
+			// STEP 5: Extract data from result set
+			int i = 0;
+			while (rs.next()) {
+
+				// Map<String, String> recordVal = new HashMap<String,
+				// String>();
+				System.out.println("Checking columns value : " + rs.getString(1) + " | " + rs.getString(2) + " | "
+						+ rs.getString(3));
+
+				retrec1 = retrec1 + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "XXX"; // John,12,1XXXNancy,13,2xxx
+																												// Rabeca
+
+				// recordVal.put("x"+i, rs.getString(1));
+				i++;
+			}
+			rs.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+			} // do nothing
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+		System.out.println("Goodbye!");
+		return retrec1;
+
+	}// end main
+
+}
+
+// ============================================================================
+
+	
+Click here to Reply or Forward
+
+
+
+
+
+
+Payentry.com:
+
+
+
+Read Config File and Get Excel File Name   
+                
+Read the Excel and Get the URL,INPUT and Expected Result
+split
+invoke the URL
+Split INPUT and get Userid,Password
+populate the screen from Input split
+
+
+Click on Login
+Connect to db and Verify userid,pass word exist
+if exist and welcome screen then Status="passed"
+Write to Excel the Result
+
+Crete Package UTIL
+1) dbprog
+2) Read excel
+3) ReadConfig
+4) Excelwrite
+
+String Excelfilenm=readconfig(C:\\test\\config.properties");
+String  Res = readExcel(Excelfilenm)   //TCNO,TCDESC,INPUT,EXP
+String TCNO=Res.split(";")[0]
+String TCDESC=Res.split(";")[1]
+String INPUT=Res.split(";")[2]
+String User=INPUT.split(',')[1]
+String PASS=INPUT.split(',')[2];
+String SQL=INPUT.split(',')[3];
+
+String URL=INPUT.split(',')[0];
+String status="";
+driver.get(URL)
+driver.findElements(By.id('xxx')).sendKeys(User);
+driver.findElements(By.id('xxx')).sendKeys(PASS);
+driver.findElements(By.id('login')).click();
+String Title=driver.getTitle();
+Boolean res1=getdb(SQL);
+if (res1) && (Title.equals('welcome'))
+{
+  ActRES="Loggedin"
+  status="passed";
+}
+WriteExcel (TCNO,TCDESC,INPUT,EXPRES,ACTRES,status);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Userid
+Password
+
+
+Login  
+
+
+TCNO     TCDESC            Input     Expected        Actual   P/F   
+
+TC01    validate Login    xxxx         login        Error      F
+
+===
+1.  Create GitHub Account
+2.  Git Clone of your repository
+3.  Add todays Class File 
+4.  Commit 
+5. Merge with The Master
+6.  Verify the GitHub
+
+
+1.  Create GitHub Account
+2.  Git Clone of your repository
+2a. Create a Branch
+3.  Add todays Class File 
+4.  Commit 
+5. Merge with The Master
+6. Verify the GitHub
+
+// ===========================================================
+//            Github   ==> Source Control or Version Control
+//          Github.com ==> Open Your account 
+// =========================================================
+
+adb
+cd \git
+dir
+cd ..
+// ====================================================
+//         git clone 
+// ================================================
+
+mkdir git1
+cd git1 
+git clone https://github.com/budftf/Learn-Testing
+
+// ====================================================
+//              Create a New Branch and add/Modify File 
+//              Use git status to check it
+// =====================================================
+
+git branch newbr     ==> Create a New Branch
+git checkout newbr   ===> I am in NewBr
+
+git pull https://github.com/budftf/Learn-Testing
+git status
+git add .
+git status
+
+// =================================================
+//              Upload to git 
+// ==================================================
+
+#git commit -m 'added gitcommands'
+git commit 
+git checkout master
+git merge newbr 
+git push -u origin master
+// ===============================================
+
+history
+git status
+f7 >  x
+doskey /history
+doskey /history  > gitcomm
+// ===================================================================
+//           Selenium  Code 
+//
+//
+//       Web Table
+//       DropDownList
+//       Get all the Links from Web Page
+// ==================================================================
+//  Task ==>  Get the Data Table from EMP Table and Return the Data in the 
+//            main program through Hashmap
+// =====================================================================
+//   What Is thread and what is Process 
+//   What is Multithreading and what is pros and cons of Multithread
+
+
+// ===================================================================
+//          Java Collections
+//
+//      Arrays
+//      ArrayList
+//      Hashmap
+//      HashTable
+//      List
+//      set
+//      LinkedHashMapset
+// =============================================================
+
+                   Ordered          SynChronized        Faster         Fixed    Reverse Order Duplicate
+
+Array                                                                    Y                                                           Y
+ArrayList                             N                                  N
+HashMap              N                N    Allow                         N
+HashTable                             Y                    N             N
+TreeMap                                              Traverse the Key    N          Y
+Hashmapset                            N                                             N
+LinkedHashSet       Y                          
+vector
+Queus
+List                Y
+// ==================================================================================
+
+
+WebDriver _driver = new InternetExplorerDriver();
+    _driver.navigate().to("http://www.google.co.in/");
+    List <WebElement> alllinks = _driver.findElements(By.tagName("a"));
+
+    for(int i=0;i<alllinks.size();i++)
+        System.out.println(alllinks.get(i).getText());
+
+    for(int i=0;i<alllinks.size();i++){
+        alllinks.get(i).click();
+        _driver.navigate().back();
+    }
+
+
+// ==============================================================================
+1.   Get all the Links in Student Application  (SIS)   BestBuy or Google
+2.   Click each Link and verify Titles are correct 
+3.   Verify Link Name in the Datbase Table 
+4.  Produce Reports 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class  dbprog {
+//getdb ==> Function to get the value
+public static String  getdb(String sql)
+
+{
+// String sql="select * from student where stno ='3'";
+// String sql="select * from student";
+
+  // Calling the function and passing the query
+   //  String res=getdb(sql);
+
+   //splitting the value to get stnm
+  //   String nm=res.split(",")[1];
+   
+  // comparing with stnm Prithul or aaa
+   //  if (nm.equals("Prithul")) 
+   //     System.out.println("Equal");   
+   //     System.out.println("res from function = "+ res); 
+    // }
+     String res="";
+        try
+        {
+         // Connection for Oracle
+         Class.forName("oracle.jdbc.driver.OracleDriver");
+        Statement st=null;
+ResultSet rs = null;
+                String url = "jdbc:oracle:thin:@localhost:1522:demodbtest";
+            Connection cn = DriverManager.getConnection(url, "bud", "bud" );
+                System.out.println("Connection Worked");
+                
+             // create the statement object 
+                st = cn.createStatement();
+                
+            //  execute query
+                  rs = st.executeQuery( sql );
+
+                while(rs.next())
+                {
+                                 
+                res=res + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3);
+                }
+                cn.close();
+                }
+           catch (Exception e)
+                  {
+                     e.printStackTrace();
+                     System.out.println("Connection Failed");
+                  }
+                    return res;
+
+              }
+
+
+          }
+
+
+=================================================================
+
+
+package t1.t1;
+
+import static org.junit.Assert.*;
+import org.openqa.selenium.ie.InternetExplorerDriver; 
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.junit.Test;
+public class seleniumprog {
+
+  public static void main(String [] args) throws InterruptedException{
+        
+// selenium server  2010  
+//  start selenium server
+//  2013   webdriver  ( don't download selenium server
+//  Webdriver it works on the Browser level   (selenium 2.0)
+  
+  
+  
+
+    WebDriver browser =  new InternetExplorerDriver();
+
+    //Firefox's proxy driver executable is in a folder already
+    //  on the host system's PATH environment variable.
+    
+    System.setProperty("webdriver.ie.driver", "C:\\installation\\IEDriverServer.exe");
+    //Initialize InternetExplorerDriver Instance.
+    WebDriver driver = new InternetExplorerDriver();
+  
+    driver.get("http://google.com");
+    
+    
+    driver.findElement(By.id("1st-ib")).sendKeys("qtp");
+    //driver.findElement(By.name("q")).sendKeys("aaaa");
+    
+    driver.findElement(By.name("btnK")).click();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    browser.close();        
+   }
+}
+
+
+
+
+
+
+
+========================================================================
+
+
+
+
+package util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class getages {
+public static void  processfile (String FILENAME)
+  {
+  String EmpolyeeNames;
+BufferedReader br = null;
+FileReader fr = null;
+int age11;
+int a30 = 0;
+int a20 = 0;
+try {
+
+br = new BufferedReader(new FileReader(FILENAME));
+fr = new FileReader(FILENAME);
+br = new BufferedReader(fr);
+
+String sCurrentLine;
+
+while ((sCurrentLine = br.readLine()) != null) {
+System.out.println(sCurrentLine); 
+ Object sCuurrenLine = null;
+ String age= sCurrentLine.split(",")[2];
+ if (age == "20")
+ {
+ 
+ a20 = a20 + 1;
+ }
+ 
+ if (age == "30")
+ {
+ 
+ a30 = a30 + 1;
+ } 
+}
+// ==============================================================================
+//            End of While loop
+// ===============================================================================
+System.out.println("Totl 20==> "  +  a20);
+System.out.println("Totl 30==> "  +  a30);
+// ==============================================================================
+//           Catch the errors
+// ===============================================================================
+
+} catch (IOException e) {
+
+e.printStackTrace();
+
+} finally {
+
+try {
+
+if (br != null)
+br.close();
+
+if (fr != null)
+fr.close();
+
+} catch (IOException ex) {
+
+ex.printStackTrace();
+
+}
+
+}
+// ==============================================================================
+
+     }
+
+}
+
+
+
+
+
+
+=============================================================================================================
+
+
+
+
+
+
+// ===============================================================================================
+private static final String FILENAME = "C:\\Users\\ami5566\\Documents\\agesfile.txt";
+
+public static void main(String[] args) {
+// =============================================================================================
+//               Define the Variables 
+// ============================================================================================
+getages  ga = new getages(); 
+ga.processfile (FILENAME);
+String sql="select * from student where stno ='3'";
+dbprog  db = new dbprog();
+String retval=db.getdb(sql);
+System.out.println(retval);
+}
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class  dbprog {
+//getdb ==> Function to get the value
+public static String  getdb(String sql)
+
+{
+// String sql="select * from student where stno ='3'";
+// String sql="select * from student";
+
+  // Calling the function and passing the query
+   //  String res=getdb(sql);
+
+   //splitting the value to get stnm
+  //   String nm=res.split(",")[1];
+   
+  // comparing with stnm Prithul or aaa
+   //  if (nm.equals("Prithul")) 
+   //     System.out.println("Equal");   
+   //     System.out.println("res from function = "+ res); 
+    // }
+     String res="";
+        try
+        {
+         // Connection for Oracle
+         Class.forName("oracle.jdbc.driver.OracleDriver");
+        Statement st=null;
+ResultSet rs = null;
+                String url = "jdbc:oracle:thin:@localhost:1522:demodbtest";
+            Connection cn = DriverManager.getConnection(url, "bud", "bud" );
+                System.out.println("Connection Worked");
+                
+             // create the statement object 
+                st = cn.createStatement();
+                
+            //  execute query
+                  rs = st.executeQuery( sql );
+
+                while(rs.next())
+                {
+                                 
+                res=res + rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3);
+                }
+                cn.close();
+                }
+           catch (Exception e)
+                  {
+                     e.printStackTrace();
+                     System.out.println("Connection Failed");
+                  }
+                    return res;
+
+              }
+
+
+          }
+
+
+=================================================================
+
+
+package t1.t1;
+
+import static org.junit.Assert.*;
+import org.openqa.selenium.ie.InternetExplorerDriver; 
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.junit.Test;
+public class seleniumprog {
+
+  public static void main(String [] args) throws InterruptedException{
+        
+// selenium server  2010  
+//  start selenium server
+//  2013   webdriver  ( don't download selenium server
+//  Webdriver it works on the Browser level   (selenium 2.0)
+  
+  
+  
+
+    WebDriver browser =  new InternetExplorerDriver();
+
+    //Firefox's proxy driver executable is in a folder already
+    //  on the host system's PATH environment variable.
+    
+    System.setProperty("webdriver.ie.driver", "C:\\installation\\IEDriverServer.exe");
+    //Initialize InternetExplorerDriver Instance.
+    WebDriver driver = new InternetExplorerDriver();
+  
+    driver.get("http://google.com");
+    
+    
+    driver.findElement(By.id("1st-ib")).sendKeys("qtp");
+    //driver.findElement(By.name("q")).sendKeys("aaaa");
+    
+    driver.findElement(By.name("btnK")).click();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    browser.close();        
+   }
+}
+
+
+
+
+
+
+
+========================================================================
+
+
+
+
+package util;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class getages {
+public static void  processfile (String FILENAME)
+  {
+  String EmpolyeeNames;
+BufferedReader br = null;
+FileReader fr = null;
+int age11;
+int a30 = 0;
+int a20 = 0;
+try {
+
+br = new BufferedReader(new FileReader(FILENAME));
+fr = new FileReader(FILENAME);
+br = new BufferedReader(fr);
+
+String sCurrentLine;
+
+while ((sCurrentLine = br.readLine()) != null) {
+System.out.println(sCurrentLine); 
+ Object sCuurrenLine = null;
+ String age= sCurrentLine.split(",")[2];
+ if (age == "20")
+ {
+ 
+ a20 = a20 + 1;
+ }
+ 
+ if (age == "30")
+ {
+ 
+ a30 = a30 + 1;
+ } 
+}
+// ==============================================================================
+//            End of While loop
+// ===============================================================================
+System.out.println("Totl 20==> "  +  a20);
+System.out.println("Totl 30==> "  +  a30);
+// ==============================================================================
+//           Catch the errors
+// ===============================================================================
+
+} catch (IOException e) {
+
+e.printStackTrace();
+
+} finally {
+
+try {
+
+if (br != null)
+br.close();
+
+if (fr != null)
+fr.close();
+
+} catch (IOException ex) {
+
+ex.printStackTrace();
+
+}
+
+}
+// ==============================================================================
+
+     }
+
+}
+
+
+
+
+
+
+=============================================================================================================
+
+
+
+
+
+
+// ===============================================================================================
+private static final String FILENAME = "C:\\Users\\ami5566\\Documents\\agesfile.txt";
+
+public static void main(String[] args) {
+// =============================================================================================
+//               Define the Variables 
+// ============================================================================================
+getages  ga = new getages(); 
+ga.processfile (FILENAME);
+String sql="select * from student where stno ='3'";
+dbprog  db = new dbprog();
+String retval=db.getdb(sql);
+System.out.println(retval);
+}
+
+=========================================================================================
+
+package com.example.basic;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
+public class ReadFile {
+public static void main(String[] args) {
+Reader reader = null;
+try{
+reader = new FileReader("src/files/test.txt");
+// reader = new FileReader("C:\\Users\\Mushfiq\\Desktop\\test.txt");
+int c;
+while((c = reader.read()) != -1) {
+// char ch = (char) c; 
+char ch = (char) c; 
+System.out.print(ch);
+}
+} catch (IOException e) {
+e.printStackTrace();
+} finally {
+try{
+if (reader!=null) {
+reader.close();
+}
+}catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+//import org.apache.http.client.HttpClient;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.json.JSONException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
+ 
+
+
+public class prog1 {
+public static String Msg="";
+public static void main(String[] args) throws Exception {
+//getallLinks("http://localhost:8081/FTF/menu.html");
+String appUrl="http://services.groupkt.com/country/get/all";
+submitPutRequest( appUrl, "");
+//writeExcel() ;
+System.exit(0);
+String dbConnectionURL="jdbc:oracle:thin:@localhost:1521:orcl";
+String usernm="bud";
+String password="bud";
+String sqlQuery="select * from student";
+String []rec = dbConnectionURL.split(":");
+String f=rec[0];
+String s=rec[1];
+System.out.println (f + "=" + s);
+for (int i=0;i<rec.length; i ++)
+System.out.println("rec val " + i + "." + rec[i]);
+System.exit(0);
+//  1)  Get all the Input Info
+String retrec=GetInputInfo("C:\classinterview\config.properties","D");
+System.out.println("Retrec=" + retrec);
+
+//  Invoke Proper URL
+String url=retrec.split(",")[3];
+String exph1value=retrec.split(",")[2];
+//String usernm=retrec.split(",")[0];
+String pstnm = retrec.split(",")[7];
+// all the student info
+ WebDriver driver=invokeandverifyur( url,exph1value );
+ String pstid="100";
+ 
+ populatescreen (driver,pstid);
+     int retval= readdb(  dbConnectionURL, usernm, password,sqlQuery) ;
+      
+if (   retval == 1)
+ System.out.println("Passed");
+
+System.exit(0);
+readdb( dbConnectionURL, usernm, password, sqlQuery) ;
+System.out.println(retrec);
+}
+// ============================================================================
+public static void gethash()
+{
+  HashMap<Integer,String> hm=new HashMap<Integer,String>();  
+  hm.put(100,"Amit");  
+  hm.put(101,"Vijay");  
+  hm.put(102,"Rahul");  
+  for(Map.Entry m:hm.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  }  
+  
+   Map<Integer,Book> map=new HashMap<Integer,Book>();    
+    //Creating Books    
+    Book b1=new Book(101,"Let us C","Yashwant Kanetkar","BPB",8);    
+    Book b2=new Book(102,"Data Communications & Networking","Forouzan","Mc Graw Hill",4);    
+    Book b3=new Book(103,"Operating System","Galvin","Wiley",6);    
+    //Adding Books to map   
+    map.put(1,b1);  
+    map.put(2,b2);  
+    map.put(3,b3);  
+      
+    //Traversing map  
+    for(Map.Entry<Integer, Book> entry:map.entrySet()){    
+        int key=entry.getKey();  
+        Book b=entry.getValue();  
+        System.out.println(key+" Details:");  
+        System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);   
+    }    
+}    
+// =============================================================================
+public static String submitPutRequest(String appUrl, String requestBody)
+throws IOException, JSONException, Exception {
+
+// =========================================================================
+ String url = "http://www.apache.org/";
+
+    // Create an instance of HttpClient.
+    HttpClient client1 = new HttpClient();
+
+    // Create a method instance.
+    GetMethod method = new GetMethod(url);
+    
+    // Provide custom retry handler is necessary
+ //   method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
+  //   new DefaultHttpMethodRetryHandler(3, false));
+
+    try {
+      // Execute the method.
+      int statusCode = client1.executeMethod(method);
+
+      if (statusCode != HttpStatus.SC_OK) {
+        System.err.println("Method failed: " + method.getStatusLine());
+      }
+
+      // Read the response body.
+      byte[] responseBody = method.getResponseBody();
+
+      // Deal with the response.
+      // Use caution: ensure correct character encoding and is not binary data
+      System.out.println(new String(responseBody));
+
+    } catch (HttpException e1) {
+      System.err.println("Fatal protocol violation: " + e1.getMessage());
+      e1.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Fatal transport error: " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      // Release the connection.
+      method.releaseConnection();
+    }  
+  
+
+// =================================================================
+//logger.info("In the method submitPutRequest with params appUrl : " + appUrl + "requestBody :" + requestBody);
+// StringRequestEntity requestEntity = new StringRequestEntity(requestBody, "application/json", "UTF-8");
+String responseBody = null;
+HttpClient client = new HttpClient();
+// StringBuilder sb = new StringBuilder(appUrl);
+PutMethod putMethod = new PutMethod(appUrl);
+// putMethod.setRequestEntity(requestEntity);
+int statusCode = client.executeMethod(putMethod); // check it
+//logger.debug("Checking the statusCode of the hit end point is : " + statusCode);
+if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_ACCEPTED
+|| statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_BAD_REQUEST) {
+responseBody = putMethod.getResponseBodyAsString();
+} else if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+throw new Exception("HTTP status code returned is a failure : " + statusCode);
+} else {
+//logger.warn("Status Code was neither success nor accepted nor bad request.");
+responseBody = putMethod.getResponseBodyAsString();
+}
+System.out.println("About to exit the method submitPutRequest with responseBody : " + responseBody);
+return responseBody;
+
+}
+
+// =========================================================
+public static void  getinfo() throws FileNotFoundException {
+    //public static void main(String [] args)  throws IOException {
+
+        // The name of the file to open.
+           String fileName = "C:\classinterview\student.txt";
+
+        // This will reference one line at a time
+           String line = null;
+
+ // Scaning the file
+           Scanner scanFile = new Scanner(new File(fileName));
+
+ // Making a string array
+         String[] student = new String[20];
+
+ //this is counter
+ int i = 0;
+
+ //Adding the name into the array
+        while(scanFile.hasNext())
+ {
+  student[i] = scanFile.next();
+   i++;
+  
+ }
+ 
+ // Printing the array
+          for( i = 0; i < student.length; i++)
+ {
+       System.out.println(student[i]);
+ }
+          
+}
+// ==============================================================================
+public static void arrayexample() {
+String [] student = {"Alam","popy","farhana"};
+System.out.println(student.length);
+if (student.length == 3)
+{
+System.out.println("Matched");
+}
+for (int i=0;i<student.length; i++)
+System.out.println(student[i]);
+}
+public static void testsel()
+{
+WebDriver driver = null;
+// Create a new instance of the Firefox driver
+
+        driver = new FirefoxDriver();
+
+        //Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //Launch the Online Store Website
+
+        driver.get("http://www.store.demoqa.com");
+
+        // Find the element that's ID attribute is 'account'(My Account) 
+
+        driver.findElement(By.xpath(".//*[@id='account']/a")).click();
+
+        // Find the element that's ID attribute is 'log' (Username)
+
+        // Enter Username on the element found by above desc.
+
+        driver.findElement(By.id("log")).sendKeys("testuser_1"); 
+
+        // Find the element that's ID attribute is 'pwd' (Password)
+
+        // Enter Password on the element found by the above desc.
+
+        driver.findElement(By.id("pwd")).sendKeys("Test@123");
+
+        // Now submit the form. WebDriver will find the form for us from the element 
+
+        driver.findElement(By.id("login")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("Login Successfully");
+
+        // Find the element that's ID attribute is 'account_logout' (Log Out)
+
+        driver.findElement (By.xpath(".//*[@id='account_logout']/a")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("LogOut Successfully");
+
+        // Close the driver
+
+        driver.quit();
+
+}
+
+// ===============================================================================
+ private static final String FILE_NAME = "/tmp/MyFirstExcel.xlsx";
+
+    public static void readexcel() {
+
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new HSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+                        System.out.print(currentCell.getStringCellValue() + "--");
+                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    }
+
+                }
+                System.out.println();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+         
+         
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    
+public static void writeExcel() throws FileNotFoundException, IOException
+{
+   HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Java Books");
+         
+        Object[][] bookData = {
+                {"Head First Java", "Kathy Serria", 79},
+                {"Effective Java", "Joshua Bloch", 36},
+                {"Clean Code", "Robert martin", 42},
+                {"Thinking in Java", "Bruce Eckel", 35},
+        };
+ 
+        int rowCount = 0;
+         
+        for (Object[] aBook : bookData) {
+            Row row = sheet.createRow(++rowCount);
+             
+            int columnCount = 0;
+             
+            for (Object field : aBook) {
+                Cell cell = row.createCell(++columnCount);
+                if (field instanceof String) {
+                    cell.setCellValue((String) field);
+                } else if (field instanceof Integer) {
+                    cell.setCellValue((Integer) field);
+                }
+            }
+             
+        }
+         
+         
+        try (FileOutputStream outputStream = new FileOutputStream("c:\classinterview\JavaBooks.xlsx")) {
+            workbook.write(outputStream);
+        }
+    }
+ 
+public static WebDriver  invokeandverifyur(String url,String exph1value)
+{
+System.out.println("Internet Explorer is selected");
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+System.out.println("h1value=" + acth1value);
+boolean result=compareString (acth1value,exph1value);
+System.out.println("result=" + result);
+if (!result)
+writereport(Msg);
+return driver;
+} 
+public static void   getallLinks(String url)
+{
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+ 
+System.out.println(links.size());
+
+for (int i = 1; i<=links.size(); i=i+1)
+
+{
+
+System.out.println(links.get(i).getText());
+
+}
+}
+public static void comparearrays (String []  explinknm, String [] actlinknm )
+{
+//String [] explinknm = {"add Student","Add Payment"};
+//String [] actlinknm = {"add student","add payment"};
+
+
+for (int i =0; i <  explinknm.length; i ++ )
+ {
+
+     if (explinknm[i] == actlinknm [i] )
+     {
+        System.out.println ("Matched");
+        
+      }
+
+    else 
+         {
+                System.out.println (" Not Matched");
+                break;
+                }       
+
+
+    }
+
+}
+
+
+public static void writereport(String Msg)
+{
+System.out.println("writing Reports ...");
+}
+public static boolean  compareString(String str1,String str2)
+{
+System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+if (str1.equalsIgnoreCase(str2 ) )
+return true;
+else
+return false;
+}
+
+/*
+ *  Get all the Input values from config.properties 
+ * 
+ */
+public static String GetInputInfo( String Filenm,String env) throws IOException
+    {
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl ;
+     return retrec;
+     
+       }
+public static void populatescreen (WebDriver driver,String pstid)
+{
+driver.findElement(By.id("stno")).sendKeys(pstid);
+driver.findElement(By.id("subbtn")).click();
+}
+public static int readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+int i=0;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+while (rs.next()) {
+// Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+//recordVal.put("x"+i, rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+return i;
+}
+
+// ===========================================================================================
+package test1;
+
+public class test1 {
+public static void main(String[] args) throws Exception {
+        String [] explink=readdb( String dbConnectionURL,String usernm,String password,String sqlQuery)
+String [] actlink = invokeurl();
+comparearrays(explink,actlink);
+
+
+}
+// ====================================================
+// put the functions here
+// ==============================================
+public static void comparearrays ()
+{
+String [] explinknm = {"add Student","Add Payment"};
+String [] actlinknm = {"add student","add payment"}";
+
+
+for (int i =0; i <  explinknm.length(); i ++ )
+ {
+
+    ( if explinknm[i] == actlinknm [i] )
+     {
+        System.out.println ("Matched");
+        
+      }
+
+    else 
+         {
+                System.out.println (" Not Matched");
+                break;
+                }       
+
+
+    }
+
+}
+
+// ========================================================
+//               Getexplinks
+// =====================================================
+
+public static String[] readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+int i = 0;
+while (rs.next()) {
+Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+recordVal.put("x"+i, rs.getString(1));
+                                 explink [i] = rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+  return explink[];
+
+}
+
+public static String[] invokeurl()
+{
+         String url=http://localhost:8081/FTF/menu.html 
+         int explink=20;
+         String [] actlinks;
+// ===========================================================
+//           Setting up the web driver
+// ===========================================================
+
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+// ===========================================================
+//            Getting all the Links  using tag 'a'
+// ===========================================================
+
+java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+ 
+System.out.println(links.size());
+
+       int totlinks=links.size();
+// ===========================================================
+//            comparing expected result with actual
+// ===========================================================
+
+        if (totlinks == explink)
+           System.out.println("Passed");
+        else
+            System.out.println("Failed");
+   String alllinks="";
+// ===========================================================
+//            Getting all the Link names 
+// ===========================================================
+  
+for (int i = 0; i<=links.size() - 1; i=i+1)
+
+{
+
+System.out.println(links.get(i).getText());
+        //alllinks = alllinks + links.get(i).getText() + ",";
+         actinks [i]  = links.get(i).getText();
+}
+     return actlinks;
+}
+}
+
+
+
+
+
+
+People will be eligible for 401K plan if they have worked 1000 hrs and 1 Year
+and worked in NJ office  and salaried Employee.
+
+a) write the Test cases 
+b) Create the Proper Tables 
+c) Insert some Test data
+d) sql necessary
+
+
+
+linksplit=allinks.split(",")
+
+
+1) create table 
+2) limknames  ==> in 1 col
+3) readdb functon to get all the link names 
+4) arrayl ==> all links from database 
+
+for (int i=0;i<linksplit.length - 1;i ++)
+{
+
+ if linksplit(i) == arrayl(i) 
+   "matched" + linksplit(i)
+  else 
+  "non matched" + linksplit(i) + arrayl(i);
+
+
+package aa;
+
+public class test1 {
+
+public static void main(String[] args) throws Exception {
+//step1 :
+ frameworkfunctions frm  = new frameworkfunctions();
+String Filenm="c:\classinterview\config1.properties";
+String configinfo=frm.GetInputInfo (Filenm);
+System.out.println(configinfo);
+String url=configinfo.split(",")[3];
+System.out.println("url=" + url);
+frm.invokeandverifyurl( url, "","");
+String alllinks=frm.getallLinks( url);
+System.out.println(alllinks);
+};
+}
+
+
+======================================================================================
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+//import org.apache.http.client.HttpClient;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.json.JSONException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
+ 
+
+
+public class prog1 {
+public static String Msg="";
+public static void main(String[] args) throws Exception {
+//getallLinks("http://localhost:8081/FTF/menu.html");
+String appUrl="http://services.groupkt.com/country/get/all";
+submitPutRequest( appUrl, "");
+//writeExcel() ;
+System.exit(0);
+String dbConnectionURL="jdbc:oracle:thin:@localhost:1521:orcl";
+String usernm="bud";
+String password="bud";
+String sqlQuery="select * from student";
+String []rec = dbConnectionURL.split(":");
+String f=rec[0];
+String s=rec[1];
+System.out.println (f + "=" + s);
+for (int i=0;i<rec.length; i ++)
+System.out.println("rec val " + i + "." + rec[i]);
+ writeExcel ("c:\classinterview\JavaBooks.xlsx ");
+ 
+System.exit(0);
+//  1)  Get all the Input Info
+String retrec=GetInputInfo("C:\classinterview\config.properties","D");
+System.out.println("Retrec=" + retrec);
+
+//  Invoke Proper URL
+String url=retrec.split(",")[3];
+String exph1value=retrec.split(",")[2];
+//String usernm=retrec.split(",")[0];
+ WebDriver driver=invokeandverifyur( url,exph1value );
+ String pstid="100";
+ 
+ populatescreen (driver,pstid);
+      readdb(  dbConnectionURL, usernm, password,sqlQuery) ;
+      
+
+System.exit(0);
+readdb( dbConnectionURL, usernm, password, sqlQuery) ;
+System.out.println(retrec);
+}
+// ============================================================================
+public static void gethash()
+{
+  HashMap<Integer,String> hm=new HashMap<Integer,String>();  
+  hm.put(100,"Amit");  
+  hm.put(101,"Vijay");  
+  hm.put(102,"Rahul");  
+  for(Map.Entry m:hm.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  }  
+  
+   Map<Integer,Book> map=new HashMap<Integer,Book>();    
+    //Creating Books    
+    Book b1=new Book(101,"Let us C","Yashwant Kanetkar","BPB",8);    
+    Book b2=new Book(102,"Data Communications & Networking","Forouzan","Mc Graw Hill",4);    
+    Book b3=new Book(103,"Operating System","Galvin","Wiley",6);    
+    //Adding Books to map   
+    map.put(1,b1);  
+    map.put(2,b2);  
+    map.put(3,b3);  
+      
+    //Traversing map  
+    for(Map.Entry<Integer, Book> entry:map.entrySet()){    
+        int key=entry.getKey();  
+        Book b=entry.getValue();  
+        System.out.println(key+" Details:");  
+        System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);   
+    }    
+}    
+// =============================================================================
+public static String submitPutRequest(String appUrl, String requestBody)
+throws IOException, JSONException, Exception {
+
+// =========================================================================
+ String url = "http://www.apache.org/";
+
+    // Create an instance of HttpClient.
+    HttpClient client1 = new HttpClient();
+
+    // Create a method instance.
+    GetMethod method = new GetMethod(url);
+    
+    // Provide custom retry handler is necessary
+ //   method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
+  //   new DefaultHttpMethodRetryHandler(3, false));
+
+    try {
+      // Execute the method.
+      int statusCode = client1.executeMethod(method);
+
+      if (statusCode != HttpStatus.SC_OK) {
+        System.err.println("Method failed: " + method.getStatusLine());
+      }
+
+      // Read the response body.
+      byte[] responseBody = method.getResponseBody();
+
+      // Deal with the response.
+      // Use caution: ensure correct character encoding and is not binary data
+      System.out.println(new String(responseBody));
+
+    } catch (HttpException e1) {
+      System.err.println("Fatal protocol violation: " + e1.getMessage());
+      e1.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Fatal transport error: " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      // Release the connection.
+      method.releaseConnection();
+    }  
+  
+
+// =================================================================
+//logger.info("In the method submitPutRequest with params appUrl : " + appUrl + "requestBody :" + requestBody);
+// StringRequestEntity requestEntity = new StringRequestEntity(requestBody, "application/json", "UTF-8");
+String responseBody = null;
+HttpClient client = new HttpClient();
+// StringBuilder sb = new StringBuilder(appUrl);
+PutMethod putMethod = new PutMethod(appUrl);
+// putMethod.setRequestEntity(requestEntity);
+int statusCode = client.executeMethod(putMethod); // check it
+//logger.debug("Checking the statusCode of the hit end point is : " + statusCode);
+if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_ACCEPTED
+|| statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_BAD_REQUEST) {
+responseBody = putMethod.getResponseBodyAsString();
+} else if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+throw new Exception("HTTP status code returned is a failure : " + statusCode);
+} else {
+//logger.warn("Status Code was neither success nor accepted nor bad request.");
+responseBody = putMethod.getResponseBodyAsString();
+}
+System.out.println("About to exit the method submitPutRequest with responseBody : " + responseBody);
+return responseBody;
+
+}
+
+// =========================================================
+public static void  getinfo() throws FileNotFoundException {
+    //public static void main(String [] args)  throws IOException {
+
+        // The name of the file to open.
+           String fileName = "C:\classinterview\student.txt";
+
+        // This will reference one line at a time
+           String line = null;
+
+ // Scaning the file
+           Scanner scanFile = new Scanner(new File(fileName));
+
+ // Making a string array
+         String[] student = new String[20];
+
+ //this is counter
+ int i = 0;
+
+ //Adding the name into the array
+        while(scanFile.hasNext())
+ {
+  student[i] = scanFile.next();
+   i++;
+  
+ }
+ 
+ // Printing the array
+          for( i = 0; i < student.length; i++)
+ {
+       System.out.println(student[i]);
+ }
+          
+}
+// ==============================================================================
+public static void arrayexample() {
+String [] student = {"Alam","popy","farhana"};
+System.out.println(student.length);
+if (student.length == 3)
+{
+System.out.println("Matched");
+}
+for (int i=0;i<student.length; i++)
+System.out.println(student[i]);
+}
+public static void testsel()
+{
+WebDriver driver = null;
+// Create a new instance of the Firefox driver
+
+        driver = new FirefoxDriver();
+
+        //Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //Launch the Online Store Website
+
+        driver.get("http://www.store.demoqa.com");
+
+        // Find the element that's ID attribute is 'account'(My Account) 
+
+        driver.findElement(By.xpath(".//*[@id='account']/a")).click();
+
+        // Find the element that's ID attribute is 'log' (Username)
+
+        // Enter Username on the element found by above desc.
+
+        driver.findElement(By.id("log")).sendKeys("testuser_1"); 
+
+        // Find the element that's ID attribute is 'pwd' (Password)
+
+        // Enter Password on the element found by the above desc.
+
+        driver.findElement(By.id("pwd")).sendKeys("Test@123");
+
+        // Now submit the form. WebDriver will find the form for us from the element 
+
+        driver.findElement(By.id("login")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("Login Successfully");
+
+        // Find the element that's ID attribute is 'account_logout' (Log Out)
+
+        driver.findElement (By.xpath(".//*[@id='account_logout']/a")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("LogOut Successfully");
+
+        // Close the driver
+
+        driver.quit();
+
+}
+
+// ===============================================================================
+ private static final String FILE_NAME = "/tmp/MyFirstExcel.xlsx";
+
+    public static void readexcel() {
+
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new HSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+                        System.out.print(currentCell.getStringCellValue() + "--");
+                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    }
+
+                }
+                System.out.println();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+         
+         
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    
+public static void writeExcel(String Filenm) throws FileNotFoundException, IOException
+{
+   HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Java Books");
+         
+        Object[][] bookData = {
+                {"Head First Java", "Kathy Serria", 79},
+                {"Effective Java", "Joshua Bloch", 36},
+                {"Clean Code", "Robert martin", 42},
+                {"Thinking in Java", "Bruce Eckel", 35},
+        };
+ 
+        int rowCount = 0;
+         
+        for (Object[] aBook : bookData) {
+            Row row = sheet.createRow(++rowCount);
+             
+            int columnCount = 0;
+             
+            for (Object field : aBook) {
+                Cell cell = row.createCell(++columnCount);
+                if (field instanceof String) {
+                    cell.setCellValue((String) field);
+                } else if (field instanceof Integer) {
+                    cell.setCellValue((Integer) field);
+                }
+            }
+             
+        }
+         
+            
+        try (FileOutputStream outputStream = new FileOutputStream(Filenm)) {
+            workbook.write(outputStream);
+        }
+    }
+ 
+public static WebDriver  invokeandverifyur(String url,String exph1value)
+{
+System.out.println("Internet Explorer is selected");
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+System.out.println("h1value=" + acth1value);
+boolean result=compareString (acth1value,exph1value);
+System.out.println("result=" + result);
+if (!result)
+writereport(Msg);
+return driver;
+} 
+public static void   getallLinks(String url)
+{
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+ 
+System.out.println(links.size());
+
+for (int i = 1; i<=links.size(); i=i+1)
+
+{
+
+System.out.println(links.get(i).getText());
+
+}
+}
+public static void writereport(String Msg)
+{
+System.out.println("writing Reports ...");
+}
+public static boolean  compareString(String str1,String str2)
+{
+System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+if (str1.equalsIgnoreCase(str2 ) )
+return true;
+else
+return false;
+}
+
+/*
+ *  Get all the Input values from config.properties 
+ * 
+ */
+public static String GetInputInfo( String Filenm,String env) throws IOException
+    {
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl ;
+     return retrec;
+     
+       }
+public static void populatescreen (WebDriver driver,String pstid)
+{
+driver.findElement(By.id("stno")).sendKeys(pstid);
+driver.findElement(By.id("subbtn")).click();
+}
+public static void readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+int i = 0;
+while (rs.next()) {
+Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+recordVal.put("x"+i, rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+}
+
+// =============================================================================================== 
+}
+
+
+
+Framework Functions
+=======================
+
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class frameworkfunctions {
+// =================================================================================================
+//                 Getting the Input Values from Properties 
+//  ================================================================================================
+public static String GetInputInfo( String Filenm) throws IOException
+    {
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String stno=prop.getProperty("stid");
+     String stnm=prop.getProperty("stnm");
+     String Title=prop.getProperty("Title");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl + "," + Title ;
+     return retrec;
+     
+       }
+// =================================================================================================
+//                Calling URL
+//  ================================================================================================
+
+public static WebDriver  invokeandverifyurl(String url,String exph1value)
+{
+System.out.println("Internet Explorer is selected");
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+System.out.println("h1value=" + acth1value);
+boolean result=compareString (acth1value,exph1value);
+System.out.println("result=" + result);
+//if (!result)
+//writereport(Msg);
+//return driver;
+return driver;
+} 
+// =================================================================================================
+//               compare Two String Values
+//  ================================================================================================
+public static boolean  compareString(String str1,String str2)
+{
+System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+if (str1.equalsIgnoreCase(str2 ) )
+return true;
+else
+return false;
+}
+// =================================================================================================
+//              ReadDb
+//  ================================================================================================
+
+public static void readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+int i = 0;
+while (rs.next()) {
+Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+recordVal.put("x"+i, rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+}
+
+
+}
+
+
+
+=============================================================
+
+package aa;
+
+import org.junit.runner.RunWith;
+import cucumber.api.junit.Cucumber;
+
+import org.junit.runner.RunWith;
+
+import cucumber.api.CucumberOptions;
+
+@RunWith(Cucumber.class)
+
+@CucumberOptions(
+features = "src/test/resources/project.feature"
+,glue={"aa"}
+)
+
+public class projectrunner {
+}
+
+
+=======================================================================
+
+Feature:  Add Student 
+
+Scenario Outline:
+
+Given the Config file "config.properties"
+ Given I am in "http://localhost:8081/FTF/student.html"  page 
+ When I type "<stno>""<stnm>""<ststatus>""<stjoindt>"
+ And click on Process button
+ Then it should add only Active and 2018 Students
+ 
+Examples:
+
+|stno|stnm |ststatus |stjoindt |
+|001 |John1|A       | 11-jan-18|
+|002 |John2|A       | 11-jan-17|
+|003 |John3|O       | 11-jan-18|
+|004 |John4|A       | 11-jan-18|
+|005 |John5|O       | 11-jan-16|
+
+
+
+=========================================================
+Feature:  Add Student 
+
+Scenario Outline:
+
+Given the Config file "config.properties"
+ Given I am in "http://localhost:8081/FTF/student.html"  page 
+ When I type "<stno>""<stnm>""<ststatus>""<stjoindt>"
+ And click on Process button
+ Then it should add only Active and 2018 Students
+ 
+Examples:
+
+|stno|stnm |ststatus |stjoindt |
+|001 |John1|A       | 11-jan-18|
+|002 |John2|A       | 11-jan-17|
+|003 |John3|O       | 11-jan-18|
+|004 |John4|A       | 11-jan-18|
+|005 |John5|O       | 11-jan-16|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Team,
+Attached, please,find the Excel Chart to see your part of the assignment. Please finish the assignment (Your Part) and send it to Mr. Gupa by 6 pm, Monday so Mr. Gupta can go over and advise us. 
+I believe this assignment and Mr. Gupta's Lecture will help us understand the whole scenario of a testing automation.
+
+Thanks in advanc
+As Alam suggested end-to-end Testing Program,
+Pl. complete this as a Preparation:
+
+
+Requirement:
+
+
+1) Customer Can be added into Database if Cust_join_dt is 2018
+2) Cust_Local_Status ==> Active 
+
+
+
+1)  Write story based on the requirement
+2) Create Test Cases
+3) Create Feature File 
+4)  Determine  Framework Functions necessary
+5) Copy and Paste my given Program to Framework Function
+6) Design the config.properties file  to get the Input for Automation Framework
+7) Create Proper HTML File for Customer add
+8) Create JSP File ( from my JSP)
+9) Create Database Table corresponding to Customer
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package aa;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class prog1 {
+public static String Msg="";
+public static void main(String[] args) throws Exception {
+String dbConnectionURL="jdbc:oracle:thin:@localhost:1521:orcl";
+String usernm="bud";
+String password="bud";
+String sqlQuery="select * from student";
+String []rec = dbConnectionURL.split(":");
+String f=rec[0];
+String s=rec[1];
+System.out.println (f + "=" + s);
+for (int i=0;i<rec.length; i ++)
+System.out.println("rec val " + i + "." + rec[i]);
+System.exit(0);
+//  1)  Get all the Input Info
+String retrec=GetInputInfo("C:\classinterview\config.properties","D");
+System.out.println("Retrec=" + retrec);
+
+//  Invoke Proper URL
+String url=retrec.split(",")[3];
+String exph1value=retrec.split(",")[2];
+//String usernm=retrec.split(",")[0];
+ WebDriver driver=invokeandverifyur( url,exph1value );
+ String pstid="100";
+ 
+ populatescreen (driver,pstid);
+      readdb(  dbConnectionURL, usernm, password,sqlQuery) ;
+      
+
+System.exit(0);
+readdb( dbConnectionURL, usernm, password, sqlQuery) ;
+System.out.println(retrec);
+}
+public static WebDriver  invokeandverifyur(String url,String exph1value)
+{
+System.out.println("Internet Explorer is selected");
+System.setProperty("webdriver.ie.driver","C:\classinterview\IEDriverServer.exe\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+System.out.println("h1value=" + acth1value);
+boolean result=compareString (acth1value,exph1value);
+System.out.println("result=" + result);
+if (!result)
+writereport(Msg);
+return driver;
+} 
+public static void writereport(String Msg)
+{
+System.out.println("writing Reports ...");
+}
+public static boolean  compareString(String str1,String str2)
+{
+System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+if (str1.equalsIgnoreCase(str2 ) )
+return true;
+else
+return false;
+}
+
+/*
+ *  Get all the Input values from config.properties 
+ * 
+ */
+public static String GetInputInfo( String Filenm,String env) throws IOException
+    {
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl ;
+     return retrec;
+     
+       }
+public static void populatescreen (WebDriver driver,String pstid)
+{
+driver.findElement(By.id("stno")).sendKeys(pstid);
+driver.findElement(By.id("subbtn")).click();
+}
+public static void readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+int i = 0;
+while (rs.next()) {
+Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+recordVal.put("x"+i, rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+}
+
+// =============================================================================================== 
+}
+
+
+
+  for (int i=0;i<row.length;i++)
+      {
+           System.out.println("row" + i + "." + row[i]);   //john,1,12
+                                                           // Nancy,2,12
+
+          String nm=row[i].split(",")[0];
+          String age=row[i].split(",")[1];
+          String dept=row[i].split(",")[2];
+   
+           Screenload(nm,age,dept);    // john,1,12
+                                       // Nance=y,2,12
+
+
+
+         }
+
+
+x="aaa,bbbxxxccc,ddddxxxyyy,ggg"
+
+
+1)  TESTCASE FOR CUSTOMERORDER SUPPLIER ORDER PROJECT
+2)  DATABASE RELATED TO THE REQUIREMENTS 
+3)  HTML PAGES 
+
+4) JSP PROGRAM TO ADD THE INFO TO DATABASE 
+
+JAVA
+
+
+1)  READ FROM DATBSE AND DISPLAY
+2) DEFINE MONTH ARRAY AND DISPLAY
+3) DISPLAY ARRAYLIST OF STUDENTS AND DISPLAY
+4) DEVELOP  FUNCTIONS WHICH WILL  DISPLAY
+
+
+
+   1) FROM FILE 
+2) FROM DATABASE 
+3) FROM EXCEL
+4)  FROM ARRAYS 
+5) FROM ARRAYLIST
+
+===============================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+1)  TESTCASES
+2)  DATABASE SCHEMA
+3) HTML
+4) Use JSP Program to add to Oracle
+
+
+
+
+JAVA
+
+
+
+1)   Display Data From Database
+2)  Display No from 1 to MAX where MAX as Parameter  using JAVA Functions
+3) Java Program which will  display
+
+
+   1.  Read File 
+   2.  Write to File 
+  3.  Exit
+
+
+ Select Your Option :  _
+Program will display File and Write to File 
+
+
+
+===========================================
+
+Exam on Next Sunday:  12/31/17
+
+
+SQL 
+Basic Java Program 
+Test  Cases 
+
+===========================================
+
+
+Sample question:
+
+
+Join 3 Tables 
+Group By 
+Complete SQL
+Built-in Function Like NVL,decode,to_char  ec
+
+
+write a Java program whch will display 
+  1) No of Records in a File 
+  2)  No of Records in a Database 
+
+
+==================================================
+
+          
+
+On Sun, Dec 24, 2017 at 7:19 PM, buddhodeb gupta <guptabud@gmail.com> wrote:
+KINDLY, WILL YOU SEND YOUR ASSIGNMENTS PLEA??SE?
+
+On Sun, Dec 24, 2017 at 9:09 AM, buddhodeb gupta <guptabud@gmail.com> wrote:
+class WhileLoopExample {
+    public static void main(String args[]){
+        int looptimes =100;
+          printvalue(looptimes);
+    }
+
+// ==============================================================
+
+   public static void printvalue(int  i)
+{
+         while(i>1){
+              System.out.println(i);
+              i--;
+         }
+// ====================================================
+}
+
+
+
+
+
+
+package Utilities;
+
+import java.util.Scanner;
+
+public class main {
+Scanner sc = new Scanner (System.in);
+int number1;
+
+sc = new Scanner (system.in);
+
+system.out.println ("Select a Number, Either 1 or 2");
+int number1 = sc.nextInt();
+
+switch (number1) {
+
+case '1':
+System.out.println ("You selected" number1 + " So the file has been read");
+break;
+case '2':
+System.out.println ("You selected" number1 + "So the file has been written");
+break;
+default:
+System.out.println ("Please make a valid Selection")
+break;
+
+
+
+package Utilities;
+
+import java.util.Scanner;
+
+public class main {
+Scanner sc = new Scanner (System.in);
+int number1;
+
+sc = new Scanner (system.in);
+
+system.out.println ("Select a Number, Either 1 or 2");
+int number1 = sc.nextInt();
+
+switch (number1) {
+
+case '1':
+System.out.println ("You selected" number1 + " So the file has been read");
+break;
+case '2':
+System.out.println ("You selected" number1 + "So the file has been written");
+break;
+default:
+System.out.println ("Please make a valid Selection")
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+//import org.apache.http.client.HttpClient;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.json.JSONException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
+ 
+
+
+public class prog1 {
+public static String Msg="";
+public static void main(String[] args) throws Exception {
+//getallLinks("http://localhost:8081/FTF/menu.html");
+String appUrl="http://services.groupkt.com/country/get/all";
+submitPutRequest( appUrl, "");
+//writeExcel() ;
+System.exit(0);
+String dbConnectionURL="jdbc:oracle:thin:@localhost:1521:orcl";
+String usernm="bud";
+String password="bud";
+String sqlQuery="select * from student";
+String []rec = dbConnectionURL.split(":");
+String f=rec[0];
+String s=rec[1];
+System.out.println (f + "=" + s);
+for (int i=0;i<rec.length; i ++)
+System.out.println("rec val " + i + "." + rec[i]);
+System.exit(0);
+//  1)  Get all the Input Info
+String retrec=GetInputInfo("C:\\classinterview\\config.properties","D");
+System.out.println("Retrec=" + retrec);
+
+//  Invoke Proper URL
+String url=retrec.split(",")[3];
+String exph1value=retrec.split(",")[2];
+//String usernm=retrec.split(",")[0];
+String pstnm = retrec.split(",")[7];
+// all the student info
+ WebDriver driver=invokeandverifyur( url,exph1value );
+ String pstid="100";
+ 
+ populatescreen (driver,pstid);
+     int retval= readdb(  dbConnectionURL, usernm, password,sqlQuery) ;
+      
+if (   retval == 1)
+ System.out.println("Passed");
+
+System.exit(0);
+readdb( dbConnectionURL, usernm, password, sqlQuery) ;
+System.out.println(retrec);
+}
+// ============================================================================
+public static void gethash()
+{
+  HashMap<Integer,String> hm=new HashMap<Integer,String>();  
+  hm.put(100,"Amit");  
+  hm.put(101,"Vijay");  
+  hm.put(102,"Rahul");  
+  for(Map.Entry m:hm.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  }  
+  
+   Map<Integer,Book> map=new HashMap<Integer,Book>();    
+    //Creating Books    
+    Book b1=new Book(101,"Let us C","Yashwant Kanetkar","BPB",8);    
+    Book b2=new Book(102,"Data Communications & Networking","Forouzan","Mc Graw Hill",4);    
+    Book b3=new Book(103,"Operating System","Galvin","Wiley",6);    
+    //Adding Books to map   
+    map.put(1,b1);  
+    map.put(2,b2);  
+    map.put(3,b3);  
+      
+    //Traversing map  
+    for(Map.Entry<Integer, Book> entry:map.entrySet()){    
+        int key=entry.getKey();  
+        Book b=entry.getValue();  
+        System.out.println(key+" Details:");  
+        System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);   
+    }    
+}    
+// =============================================================================
+public static String submitPutRequest(String appUrl, String requestBody)
+throws IOException, JSONException, Exception {
+
+// =========================================================================
+ String url = "http://www.apache.org/";
+
+    // Create an instance of HttpClient.
+    HttpClient client1 = new HttpClient();
+
+    // Create a method instance.
+    GetMethod method = new GetMethod(url);
+    
+    // Provide custom retry handler is necessary
+ //   method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
+  //   new DefaultHttpMethodRetryHandler(3, false));
+
+    try {
+      // Execute the method.
+      int statusCode = client1.executeMethod(method);
+
+      if (statusCode != HttpStatus.SC_OK) {
+        System.err.println("Method failed: " + method.getStatusLine());
+      }
+
+      // Read the response body.
+      byte[] responseBody = method.getResponseBody();
+
+      // Deal with the response.
+      // Use caution: ensure correct character encoding and is not binary data
+      System.out.println(new String(responseBody));
+
+    } catch (HttpException e1) {
+      System.err.println("Fatal protocol violation: " + e1.getMessage());
+      e1.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Fatal transport error: " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      // Release the connection.
+      method.releaseConnection();
+    }  
+  
+
+// =================================================================
+//logger.info("In the method submitPutRequest with params appUrl : " + appUrl + "requestBody :" + requestBody);
+// StringRequestEntity requestEntity = new StringRequestEntity(requestBody, "application/json", "UTF-8");
+String responseBody = null;
+HttpClient client = new HttpClient();
+// StringBuilder sb = new StringBuilder(appUrl);
+PutMethod putMethod = new PutMethod(appUrl);
+// putMethod.setRequestEntity(requestEntity);
+int statusCode = client.executeMethod(putMethod); // check it
+//logger.debug("Checking the statusCode of the hit end point is : " + statusCode);
+if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_ACCEPTED
+|| statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_BAD_REQUEST) {
+responseBody = putMethod.getResponseBodyAsString();
+} else if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+throw new Exception("HTTP status code returned is a failure : " + statusCode);
+} else {
+//logger.warn("Status Code was neither success nor accepted nor bad request.");
+responseBody = putMethod.getResponseBodyAsString();
+}
+System.out.println("About to exit the method submitPutRequest with responseBody : " + responseBody);
+return responseBody;
+
+}
+
+// =========================================================
+public static void  getinfo() throws FileNotFoundException {
+    //public static void main(String [] args)  throws IOException {
+
+        // The name of the file to open.
+           String fileName = "C:\\classinterview\\student.txt";
+
+        // This will reference one line at a time
+           String line = null;
+
+ // Scaning the file
+           Scanner scanFile = new Scanner(new File(fileName));
+
+ // Making a string array
+         String[] student = new String[20];
+
+ //this is counter
+ int i = 0;
+
+ //Adding the name into the array
+        while(scanFile.hasNext())
+ {
+  student[i] = scanFile.next();
+   i++;
+  
+ }
+ 
+ // Printing the array
+          for( i = 0; i < student.length; i++)
+ {
+       System.out.println(student[i]);
+ }
+          
+}
+// ==============================================================================
+public static void arrayexample() {
+String [] student = {"Alam","popy","farhana"};
+System.out.println(student.length);
+if (student.length == 3)
+{
+System.out.println("Matched");
+}
+for (int i=0;i<student.length; i++)
+System.out.println(student[i]);
+}
+public static void testsel()
+{
+WebDriver driver = null;
+// Create a new instance of the Firefox driver
+
+        driver = new FirefoxDriver();
+
+        //Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //Launch the Online Store Website
+
+        driver.get("http://www.store.demoqa.com");
+
+        // Find the element that's ID attribute is 'account'(My Account) 
+
+        driver.findElement(By.xpath(".//*[@id='account']/a")).click();
+
+        // Find the element that's ID attribute is 'log' (Username)
+
+        // Enter Username on the element found by above desc.
+
+        driver.findElement(By.id("log")).sendKeys("testuser_1"); 
+
+        // Find the element that's ID attribute is 'pwd' (Password)
+
+        // Enter Password on the element found by the above desc.
+
+        driver.findElement(By.id("pwd")).sendKeys("Test@123");
+
+        // Now submit the form. WebDriver will find the form for us from the element 
+
+        driver.findElement(By.id("login")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("Login Successfully");
+
+        // Find the element that's ID attribute is 'account_logout' (Log Out)
+
+        driver.findElement (By.xpath(".//*[@id='account_logout']/a")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("LogOut Successfully");
+
+        // Close the driver
+
+        driver.quit();
+
+}
+
+// ===============================================================================
+ private static final String FILE_NAME = "/tmp/MyFirstExcel.xlsx";
+
+    public static void readexcel() {
+
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new HSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+                        System.out.print(currentCell.getStringCellValue() + "--");
+                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    }
+
+                }
+                System.out.println();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+         
+         
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    
+public static void writeExcel() throws FileNotFoundException, IOException
+{
+   HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Java Books");
+         
+        Object[][] bookData = {
+                {"Head First Java", "Kathy Serria", 79},
+                {"Effective Java", "Joshua Bloch", 36},
+                {"Clean Code", "Robert martin", 42},
+                {"Thinking in Java", "Bruce Eckel", 35},
+        };
+ 
+        int rowCount = 0;
+         
+        for (Object[] aBook : bookData) {
+            Row row = sheet.createRow(++rowCount);
+             
+            int columnCount = 0;
+             
+            for (Object field : aBook) {
+                Cell cell = row.createCell(++columnCount);
+                if (field instanceof String) {
+                    cell.setCellValue((String) field);
+                } else if (field instanceof Integer) {
+                    cell.setCellValue((Integer) field);
+                }
+            }
+             
+        }
+         
+         
+        try (FileOutputStream outputStream = new FileOutputStream("c:\\classinterview\\JavaBooks.xlsx")) {
+            workbook.write(outputStream);
+        }
+    }
+ 
+public static WebDriver  invokeandverifyur(String url,String exph1value)
+{
+System.out.println("Internet Explorer is selected");
+System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+System.out.println("h1value=" + acth1value);
+boolean result=compareString (acth1value,exph1value);
+System.out.println("result=" + result);
+if (!result)
+writereport(Msg);
+return driver;
+} 
+public static void   getallLinks(String url)
+{
+System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+ 
+System.out.println(links.size());
+
+for (int i = 1; i<=links.size(); i=i+1)
+
+{
+
+System.out.println(links.get(i).getText());
+
+}
+}
+public static void comparearrays (String []  explinknm, String [] actlinknm )
+{
+//String [] explinknm = {"add Student","Add Payment"};
+//String [] actlinknm = {"add student","add payment"};
+
+
+for (int i =0; i <  explinknm.length; i ++ )
+ {
+
+     if (explinknm[i] == actlinknm [i] )
+     {
+        System.out.println ("Matched");
+        
+      }
+
+    else 
+         {
+                System.out.println (" Not Matched");
+                break;
+                }       
+
+
+    }
+
+}
+
+
+public static void writereport(String Msg)
+{
+System.out.println("writing Reports ...");
+}
+public static boolean  compareString(String str1,String str2)
+{
+System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+if (str1.equalsIgnoreCase(str2 ) )
+return true;
+else
+return false;
+}
+
+/*
+ *  Get all the Input values from config.properties 
+ * 
+ */
+public static String GetInputInfo( String Filenm,String env) throws IOException
+    {
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl ;
+     return retrec;
+     
+       }
+public static void populatescreen (WebDriver driver,String pstid)
+{
+driver.findElement(By.id("stno")).sendKeys(pstid);
+driver.findElement(By.id("subbtn")).click();
+}
+public static int readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+int i=0;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+while (rs.next()) {
+// Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+//recordVal.put("x"+i, rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+return i;
+}
+
+// =============================================================================================== 
+}
+
+package test1;
+
+public class test1 {
+public static void main(String[] args) throws Exception {
+        String [] explink=readdb( String dbConnectionURL,String usernm,String password,String sqlQuery)
+String [] actlink = invokeurl();
+comparearrays(explink,actlink);
+
+
+}
+// ====================================================
+// put the functions here
+// ==============================================
+public static void comparearrays ()
+{
+String [] explinknm = {"add Student","Add Payment"};
+String [] actlinknm = {"add student","add payment"}";
+
+
+for (int i =0; i <  explinknm.length(); i ++ )
+ {
+
+    ( if explinknm[i] == actlinknm [i] )
+     {
+        System.out.println ("Matched");
+        
+      }
+
+    else 
+         {
+                System.out.println (" Not Matched");
+                break;
+                }       
+
+
+    }
+
+}
+
+// ========================================================
+//               Getexplinks
+// =====================================================
+
+public static String[] readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+{
+ResultSet rs=null ;
+Statement statement=null;
+Connection cn=null;
+try {
+Driver driver = new oracle.jdbc.OracleDriver();
+DriverManager.registerDriver(driver);
+
+// Create a connection from the Driver Manager.
+ cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+// Open a statement and run the query fetching a resultset
+ statement  = cn.createStatement();
+ rs = statement.executeQuery(sqlQuery);
+
+int i = 0;
+while (rs.next()) {
+Map<String, String> recordVal = new HashMap<String, String>();
+System.out.println("Checking columns value : " + rs.getString(2));
+recordVal.put("x"+i, rs.getString(1));
+                                 explink [i] = rs.getString(1));
+i++;
+}
+} catch (SQLException sqlEx) {
+System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(sqlEx.getStackTrace());
+System.out.println(sqlEx);
+sqlEx.printStackTrace();
+throw sqlEx;
+} catch (Exception ex) {
+System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+System.out.println(ex.getStackTrace());
+System.out.println(ex);
+ex.printStackTrace();
+throw ex;
+} finally {
+if (rs != null)
+rs.close();
+if (statement != null)
+statement.close();
+if (cn != null)
+cn.close();
+}
+  return explink[];
+
+}
+
+public static String[] invokeurl()
+{
+         String url=http://localhost:8081/FTF/menu.html 
+         int explink=20;
+         String [] actlinks;
+// ===========================================================
+//           Setting up the web driver
+// ===========================================================
+
+System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+WebDriver driver = new InternetExplorerDriver();
+driver.get(url);
+// ===========================================================
+//            Getting all the Links  using tag 'a'
+// ===========================================================
+
+java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+ 
+System.out.println(links.size());
+
+       int totlinks=links.size();
+// ===========================================================
+//            comparing expected result with actual
+// ===========================================================
+
+        if (totlinks == explink)
+           System.out.println("Passed");
+        else
+            System.out.println("Failed");
+   String alllinks="";
+// ===========================================================
+//            Getting all the Link names 
+// ===========================================================
+  
+for (int i = 0; i<=links.size() - 1; i=i+1)
+
+{
+
+System.out.println(links.get(i).getText());
+        //alllinks = alllinks + links.get(i).getText() + ",";
+         actinks [i]  = links.get(i).getText();
+}
+     return actlinks;
+}
+}
+
+
+
+
+
+
+People will be eligible for 401K plan if they have worked 1000 hrs and 1 Year
+and worked in NJ office  and salaried Employee.
+
+a) write the Test cases 
+b) Create the Proper Tables 
+c) Insert some Test data
+d) sql necessary
+
+
+On Sun, Feb 4, 2018 at 6:32 AM, bud gupta <classftf2018@gmail.com> wrote:
+563614053
+
+On Mon, Jan 29, 2018 at 5:35 PM, bud gupta <classftf2018@gmail.com> wrote:
+linksplit=allinks.split(",")
+
+
+1) create table 
+2) limknames  ==> in 1 col
+3) readdb functon to get all the link names 
+4) arrayl ==> all links from database 
+
+for (int i=0;i<linksplit.length - 1;i ++)
+{
+
+ if linksplit(i) == arrayl(i) 
+   "matched" + linksplit(i)
+  else 
+  "non matched" + linksplit(i) + arrayl(i);
+
+}
+
+On Mon, Jan 29, 2018 at 5:29 PM, bud gupta <classftf2018@gmail.com> wrote:
+package aa;
+
+public class test1 {
+
+public static void main(String[] args) throws Exception {
+//step1 :
+ frameworkfunctions frm  = new frameworkfunctions();
+String Filenm="c:\\classinterview\\config1.properties";
+String configinfo=frm.GetInputInfo (Filenm);
+System.out.println(configinfo);
+String url=configinfo.split(",")[3];
+System.out.println("url=" + url);
+frm.invokeandverifyurl( url, "","");
+String alllinks=frm.getallLinks( url);
+System.out.println(alllinks);
+};
+}
+
+==============================================================================================
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+//import org.apache.http.client.HttpClient;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.json.JSONException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
+ 
+
+
+public class prog1 {
+public static String Msg="";
+public static void main(String[] args) throws Exception {
+//getallLinks("http://localhost:8081/FTF/menu.html");
+String appUrl="http://services.groupkt.com/country/get/all";
+submitPutRequest( appUrl, "");
+//writeExcel() ;
+System.exit(0);
+String dbConnectionURL="jdbc:oracle:thin:@localhost:1521:orcl";
+String usernm="bud";
+String password="bud";
+String sqlQuery="select * from student";
+String []rec = dbConnectionURL.split(":");
+String f=rec[0];
+String s=rec[1];
+System.out.println (f + "=" + s);
+for (int i=0;i<rec.length; i ++)
+System.out.println("rec val " + i + "." + rec[i]);
+ writeExcel ("c:\\classinterview\\JavaBooks.xlsx ");
+ 
+System.exit(0);
+//  1)  Get all the Input Info
+String retrec=GetInputInfo("C:\\classinterview\\config.properties","D");
+System.out.println("Retrec=" + retrec);
+
+//  Invoke Proper URL
+String url=retrec.split(",")[3];
+String exph1value=retrec.split(",")[2];
+//String usernm=retrec.split(",")[0];
+ WebDriver driver=invokeandverifyur( url,exph1value );
+ String pstid="100";
+ 
+ populatescreen (driver,pstid);
+      readdb(  dbConnectionURL, usernm, password,sqlQuery) ;
+      
+
+System.exit(0);
+readdb( dbConnectionURL, usernm, password, sqlQuery) ;
+System.out.println(retrec);
+}
+// ============================================================================
+public static void gethash()
+{
+  HashMap<Integer,String> hm=new HashMap<Integer,String>();  
+  hm.put(100,"Amit");  
+  hm.put(101,"Vijay");  
+  hm.put(102,"Rahul");  
+  for(Map.Entry m:hm.entrySet()){  
+   System.out.println(m.getKey()+" "+m.getValue());  
+  }  
+  
+   Map<Integer,Book> map=new HashMap<Integer,Book>();    
+    //Creating Books    
+    Book b1=new Book(101,"Let us C","Yashwant Kanetkar","BPB",8);    
+    Book b2=new Book(102,"Data Communications & Networking","Forouzan","Mc Graw Hill",4);    
+    Book b3=new Book(103,"Operating System","Galvin","Wiley",6);    
+    //Adding Books to map   
+    map.put(1,b1);  
+    map.put(2,b2);  
+    map.put(3,b3);  
+      
+    //Traversing map  
+    for(Map.Entry<Integer, Book> entry:map.entrySet()){    
+        int key=entry.getKey();  
+        Book b=entry.getValue();  
+        System.out.println(key+" Details:");  
+        System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);   
+    }    
+}    
+// =============================================================================
+public static String submitPutRequest(String appUrl, String requestBody)
+throws IOException, JSONException, Exception {
+
+// =========================================================================
+ String url = "http://www.apache.org/";
+
+    // Create an instance of HttpClient.
+    HttpClient client1 = new HttpClient();
+
+    // Create a method instance.
+    GetMethod method = new GetMethod(url);
+    
+    // Provide custom retry handler is necessary
+ //   method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
+  //   new DefaultHttpMethodRetryHandler(3, false));
+
+    try {
+      // Execute the method.
+      int statusCode = client1.executeMethod(method);
+
+      if (statusCode != HttpStatus.SC_OK) {
+        System.err.println("Method failed: " + method.getStatusLine());
+      }
+
+      // Read the response body.
+      byte[] responseBody = method.getResponseBody();
+
+      // Deal with the response.
+      // Use caution: ensure correct character encoding and is not binary data
+      System.out.println(new String(responseBody));
+
+    } catch (HttpException e1) {
+      System.err.println("Fatal protocol violation: " + e1.getMessage());
+      e1.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Fatal transport error: " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      // Release the connection.
+      method.releaseConnection();
+    }  
+  
+
+// =================================================================
+//logger.info("In the method submitPutRequest with params appUrl : " + appUrl + "requestBody :" + requestBody);
+// StringRequestEntity requestEntity = new StringRequestEntity(requestBody, "application/json", "UTF-8");
+String responseBody = null;
+HttpClient client = new HttpClient();
+// StringBuilder sb = new StringBuilder(appUrl);
+PutMethod putMethod = new PutMethod(appUrl);
+// putMethod.setRequestEntity(requestEntity);
+int statusCode = client.executeMethod(putMethod); // check it
+//logger.debug("Checking the statusCode of the hit end point is : " + statusCode);
+if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_ACCEPTED
+|| statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_BAD_REQUEST) {
+responseBody = putMethod.getResponseBodyAsString();
+} else if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+throw new Exception("HTTP status code returned is a failure : " + statusCode);
+} else {
+//logger.warn("Status Code was neither success nor accepted nor bad request.");
+responseBody = putMethod.getResponseBodyAsString();
+}
+System.out.println("About to exit the method submitPutRequest with responseBody : " + responseBody);
+return responseBody;
+
+}
+
+// =========================================================
+public static void  getinfo() throws FileNotFoundException {
+    //public static void main(String [] args)  throws IOException {
+
+        // The name of the file to open.
+           String fileName = "C:\\classinterview\\student.txt";
+
+        // This will reference one line at a time
+           String line = null;
+
+ // Scaning the file
+           Scanner scanFile = new Scanner(new File(fileName));
+
+ // Making a string array
+         String[] student = new String[20];
+
+ //this is counter
+ int i = 0;
+
+ //Adding the name into the array
+        while(scanFile.hasNext())
+ {
+  student[i] = scanFile.next();
+   i++;
+  
+ }
+ 
+ // Printing the array
+          for( i = 0; i < student.length; i++)
+ {
+       System.out.println(student[i]);
+ }
+          
+}
+// ==============================================================================
+public static void arrayexample() {
+String [] student = {"Alam","popy","farhana"};
+System.out.println(student.length);
+if (student.length == 3)
+{
+System.out.println("Matched");
+}
+for (int i=0;i<student.length; i++)
+System.out.println(student[i]);
+}
+public static void testsel()
+{
+WebDriver driver = null;
+// Create a new instance of the Firefox driver
+
+        driver = new FirefoxDriver();
+
+        //Put a Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //Launch the Online Store Website
+
+        driver.get("http://www.store.demoqa.com");
+
+        // Find the element that's ID attribute is 'account'(My Account) 
+
+        driver.findElement(By.xpath(".//*[@id='account']/a")).click();
+
+        // Find the element that's ID attribute is 'log' (Username)
+
+        // Enter Username on the element found by above desc.
+
+        driver.findElement(By.id("log")).sendKeys("testuser_1"); 
+
+        // Find the element that's ID attribute is 'pwd' (Password)
+
+        // Enter Password on the element found by the above desc.
+
+        driver.findElement(By.id("pwd")).sendKeys("Test@123");
+
+        // Now submit the form. WebDriver will find the form for us from the element 
+
+        driver.findElement(By.id("login")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("Login Successfully");
+
+        // Find the element that's ID attribute is 'account_logout' (Log Out)
+
+        driver.findElement (By.xpath(".//*[@id='account_logout']/a")).click();
+
+        // Print a Log In message to the screen
+
+        System.out.println("LogOut Successfully");
+
+        // Close the driver
+
+        driver.quit();
+
+}
+
+// ===============================================================================
+ private static final String FILE_NAME = "/tmp/MyFirstExcel.xlsx";
+
+    public static void readexcel() {
+
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new HSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+                        System.out.print(currentCell.getStringCellValue() + "--");
+                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    }
+
+                }
+                System.out.println();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+         
+         
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    
+public static void writeExcel(String Filenm) throws FileNotFoundException, IOException
+{
+   HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Java Books");
+         
+        Object[][] bookData = {
+                {"Head First Java", "Kathy Serria", 79},
+                {"Effective Java", "Joshua Bloch", 36},
+                {"Clean Code", "Robert martin", 42},
+                {"Thinking in Java", "Bruce Eckel", 35},
+        };
+ 
+        int rowCount = 0;
+         
+        for (Object[] aBook : bookData) {
+            Row row = sheet.createRow(++rowCount);
+             
+            int columnCount = 0;
+             
+            for (Object field : aBook) {
+                Cell cell = row.createCell(++columnCount);
+                if (field instanceof String) {
+                    cell.setCellValue((String) field);
+                } else if (field instanceof Integer) {
+                    cell.setCellValue((Integer) field);
+                }
+            }
+             
+        }
+         
+            
+        try (FileOutputStream outputStream = new FileOutputStream(Filenm)) {
+            workbook.write(outputStream);
+        }
+    }
+ 
+public static WebDriver  invokeandverifyur(String url,String exph1value)
+{
+...
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
